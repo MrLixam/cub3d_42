@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 05:51:01 by lvincent          #+#    #+#              #
-#    Updated: 2024/01/18 06:59:15 by lvincent         ###   ########.fr        #
+#    Updated: 2024/01/18 09:03:28 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC_DIR = src
 
 OBJ_DIR = obj
 
-SRC 	=	src/main.c
+SRC 	=	src/main.c src/parser/parser.c
 
 OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 
@@ -35,7 +35,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@make -s --no-print-directory -C libft
 	#@make -s --no-print-directory -C MacroLibX
-	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) -L./libft -lft -o $(NAME)
 	@echo -en "\\r\033[2K"
 	@echo -e "\033[1;32m[executable created]"
 

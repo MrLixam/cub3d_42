@@ -1,22 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   str_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 06:02:09 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/18 09:01:50 by lvincent         ###   ########.fr       */
+/*   Created: 2024/01/18 08:47:51 by lvincent          #+#    #+#             */
+/*   Updated: 2024/01/18 08:53:20 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-
-# include "../libft/libft.h"
-# include "utils.h"
-# include "parser.h"
-# include "render.h"
-# include "../MacroLibX/includes/mlx.h"
-
-#endif
+#include "../../includes/utils.h"	

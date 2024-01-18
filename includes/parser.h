@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:02:30 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/18 06:03:48 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/18 08:59:04 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 # define PARSER_H
 
 # include "cub3d.h"
+
+int	name_parser(char *name);
 
 #endif

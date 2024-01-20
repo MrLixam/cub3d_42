@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:02:09 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/19 12:37:24 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/20 11:09:52 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,50 @@
 # include <sys/stat.h>
 # include <errno.h>
 
-/*
-	struct containing data passed by the parsing
-	contains:
-	-the parsed map
-	-textures -> path to the texture currently, might replace by the opened texture directly, any way, this input will be parsed
-*/
-
 typedef struct s_data
 {
-	char	**map;
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_data;
 
-}	t_data;
+typedef struct s_img
+{
+	void	*img;
+	t_data	data;
+	int		width;
+	int		height;
+}			t_img;
+
+typedef struct s_texture
+{
+	t_img	tile;
+	t_img	player;
+	t_img	collectible;
+}			t_txt;
+
+typedef struct s_playable_character
+{
+	int		x;
+	int		y;
+	int		move;
+	int		collected;
+	char	footprint;
+}			t_pc;
+
+typedef struct s_game
+{
+	void		*mlx;
+	void		*win;
+	char		**map;
+	size_t		map_width;
+	size_t		map_height;
+	t_img		frame;
+	t_txt		texture;
+	t_pc		player;
+	int			collectible;
+}			t_game;
 
 
 #endif

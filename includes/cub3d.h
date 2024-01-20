@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:02:09 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/20 11:09:52 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/20 12:43:20 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ typedef struct s_texture
 
 typedef struct s_playable_character
 {
-	int		x;
-	int		y;
+	size_t	x;
+	size_t	y;
 	int		move;
 	int		collected;
 	char	footprint;

@@ -6,20 +6,22 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 08:43:10 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/20 12:53:19 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:38:07 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-int	name_parser(char *name)
+int	ext_parser(char *name, char *ext)
 {
 	char	*extension;
+	int		len;
 
-	if (ft_strlen(name) <= 4)
+	len = ft_strlen(ext);
+	if (ft_strlen(name) <= len)
 		return (1);
-	extension = &name[ft_strlen(name) - 4];
-	if (!ft_strncmp(extension, ".cub", 4))
+	extension = &name[ft_strlen(name) - len];
+	if (!ft_strncmp(extension, ext, len))
 		return (0);
 	return (1);
 }
@@ -57,7 +59,7 @@ int	parse_ext(char *name)
 	}
 	if (i)
 		return (1);
-	i = name_parser(name);
+	i = ext_parser(name, ".cub");
 	if (i)
 		ft_error(name,
 			"invalid file name: must be a .cub and name musn't be empty");

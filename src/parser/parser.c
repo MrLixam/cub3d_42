@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 08:43:10 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/22 16:38:07 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:47:27 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ext_parser(char *name, char *ext)
 	return (1);
 }
 
-int	is_valid_file(char *name)
+int	not_valid_file(char *name)
 {
 	int	fd;
 
@@ -43,27 +43,23 @@ int	is_valid_file(char *name)
 	return (0);
 }
 
-int	parse_ext(char *name)
+int	parse_extern(char *name)
 {
-	int	i;
-
-	i = is_valid_file(name);
-	if (i == 1)
+	if (not_valid_file(name) == 1)
 		ft_error(name, "is a directory");
-	if (i == -1)
+	if (not_valid_file(name) == -1)
 	{
-		if (errno == EACCES)
+		if (errno == ENOENT)
 			ft_error(name, "file does not exist");
 		else if (errno == EACCES)
 			ft_error(name, "permission denied");
 	}
-	if (i)
+	if (not_valid_file(name))
 		return (1);
-	i = ext_parser(name, ".cub");
-	if (i)
+	if (ext_parser(name, ".cub"))
 		ft_error(name,
 			"invalid file name: must be a .cub and name musn't be empty");
-	if (i)
+	if (ext_parser(name, ".cub"))
 		return (1);
 	return (0);
 }

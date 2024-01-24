@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:39:11 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/19 11:40:50 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:13:22 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,24 @@
 
 int	main(void)
 {
-	if (!name_parser("..cub"))
+	if (!ext_parser("..cub", ".cub"))
 		printf("ok\n");
-	if (!name_parser("test.cub"))
+	if (!ext_parser("test.cub", ".cub"))
 		printf("ok\n");
-	if (!name_parser(".cub"))
+	if (!ext_parser(".cub", ".cub"))
 		printf("ko\n");
-	if (!name_parser("caca.cu"))
+	if (!ext_parser("caca.cu", ".cub"))
 		printf("ko\n");
-	if (!name_parser("cu"))
+	if (!ext_parser("cu", ".cub"))
 		printf("ko\n");
-	if (!name_parser("wqwqwqwqwwqwqw.cub.cub"))
+	if (!ext_parser("wqwqwqwqwwqwqw.cub.cub", ".cub"))
 		printf("ok\n");
+	
+	char *test = "Hello!";
+	char *output;
+
+	output = ft_strinsert(test, " World", 5);
+	printf("%s\n", output);
+	free(output);
 	return (0);
 }

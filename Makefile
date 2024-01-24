@@ -6,20 +6,20 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 05:51:01 by lvincent          #+#    #+#              #
-#    Updated: 2024/01/18 09:03:28 by lvincent         ###   ########.fr        #
+#    Updated: 2024/01/24 23:07:37 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC 		=	clang
 
-FLAGS 	=	-Wall -Wextra -Werror
+FLAGS 	=	-Wall -Wextra -Werror -g
 NAME 	=	cub3d
 
 SRC_DIR = src
 
 OBJ_DIR = obj
 
-SRC 	=	src/main.c src/parser/parser.c
+SRC 	=	src/main.c src/parser/parser.c src/utils/utils_misc.c src/utils/utils_error.c
 
 OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 

@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 08:43:10 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/22 17:47:27 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:48:10 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ext_parser(char *name, char *ext)
 {
-	char	*extension;
-	int		len;
+	char		*extension;
+	size_t		len;
 
 	len = ft_strlen(ext);
 	if (ft_strlen(name) <= len)
@@ -43,8 +43,10 @@ int	not_valid_file(char *name)
 	return (0);
 }
 
-int	parse_extern(char *name)
+int	parse_extern(char *name, char *ext)
 {
+	char	*error;
+
 	if (not_valid_file(name) == 1)
 		ft_error(name, "is a directory");
 	if (not_valid_file(name) == -1)
@@ -56,10 +58,13 @@ int	parse_extern(char *name)
 	}
 	if (not_valid_file(name))
 		return (1);
-	if (ext_parser(name, ".cub"))
-		ft_error(name,
-			"invalid file name: must be a .cub and name musn't be empty");
-	if (ext_parser(name, ".cub"))
+	error = ft_strinsert(
+			"invalid file name: must be a  and name musn't be empty",
+			ext, 29);
+	if (ext_parser(name, ext))
+		ft_error(name, error);
+	free(error);
+	if (ext_parser(name, ext))
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 08:43:10 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/24 23:48:10 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:55:12 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	not_valid_file(char *name)
 {
 	int	fd;
 
-	fd = open(name, O_DIRECTORY);
+	fd = open(name, __O_DIRECTORY);
 	if (fd != -1)
 	{
 		close(fd);

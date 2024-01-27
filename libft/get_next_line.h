@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:54:58 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/04/14 13:11:04 by gpouzet          ###   ########.fr       */
+/*   Updated: 2024/01/27 22:56:11 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include "libft.h"
 # include <unistd.h>
 
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, char ***save);
 
 #endif

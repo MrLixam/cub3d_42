@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:19:40 by gpouzet           #+#    #+#             */
-/*   Updated: 2024/01/27 22:54:43 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/28 00:02:00 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ static char	*read_mini_line(char *save, int fd)
 	}
 	free(tmp);
 	return (save);
-}
-
+} 
+                                                                                                                                                                
 static char	*get_curr_line(char *save)
 {
-	int		i;
+	size_t	i;
 	char	*rv;
 
 	i = 0;
@@ -90,8 +90,8 @@ static char	*get_curr_line(char *save)
 static char	*new_save(char *save)
 {
 	char	*rv;
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (save[i] && save[i] != '\n')

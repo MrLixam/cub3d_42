@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/19 11:56:26 by gpouzet           #+#    #+#             */
-/*   Updated: 2024/01/30 03:42:04 by lvincent         ###   ########.fr       */
+/*   Created: 2022/10/02 20:53:52 by lvincent          #+#    #+#             */
+/*   Updated: 2024/01/30 07:53:09 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,24 @@
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t	i;
-	size_t	j;
+	unsigned int	i;
+	unsigned int	dest_i;
 
+	if (size == 0)
+		return (ft_strlen(src));
+	dest_i = 0;
+	while (dest[dest_i] && dest_i < size)
+		dest_i++;
 	i = 0;
-	j = 0;
-	if (size == 0 && (!src || !dest))
-		return (0);
-	if (ft_strlen(dest) +1 > size)
-		return (ft_strlen(src) + size);
-	while (dest[j])
-		j++;
-	while (j +1 < size && src[i])
-		dest[j++] = src[i++];
-	if (size == 0 || !src[i] || j + 1 == size)
-		dest[j] = '\0';
-	return (ft_strlen(dest) + ft_strlen(src) - i);
+	while (src[i] && dest_i + i < size - 1)
+	{
+		dest[dest_i + i] = src[i];
+		i++;
+	}
+	if (dest_i < size)
+		dest[dest_i + i] = '\0';
+	i = 0;
+	while (src[i])
+		i++;
+	return (dest_i + i);
 }

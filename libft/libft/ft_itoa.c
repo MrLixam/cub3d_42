@@ -3,71 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/30 10:37:47 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/04/14 12:49:28 by gpouzet          ###   ########.fr       */
+/*   Created: 2022/10/12 21:45:48 by lvincent          #+#    #+#             */
+/*   Updated: 2024/01/30 07:53:09 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../libft.h"
 
-static int	ft_recursive_power(int nb, int power)
+static int	ft_nblen(long long n)
 {
-	if (power < 0)
-		return (0);
-	if (power == 0)
-		return (1);
-	return (nb * ft_recursive_power(nb, power - 1));
-}
+	int	i;
 
-static int	ft_count(long int nbr)
-{
-	int	count;
-
-	count = 1;
-	while (nbr > 9)
+	i = 1;
+	while (n > 9)
 	{
-		nbr /= 10;
-		count++;
+		n /= 10;
+		i++;
 	}
-	return (count);
+	return (i);
 }
 
-char	*convert(char *itoa, long int nbr, int count, int i)
+char	*ft_itoa(int n)
 {
-	long int	temp;
-
-	while (count > 0)
-	{
-		temp = nbr / ft_recursive_power(10, --count);
-		if (temp < 10)
-			itoa[i++] = temp + '0';
-		else
-			itoa[i++] = temp % 10 + '0';
-	}
-	itoa[i] = '\0';
-	return (itoa);
-}
-
-char	*ft_itoa(int nbr)
-{
-	char		*itoa;
+	long long	big;
 	int			i;
-	long int	lnbr;
+	char		*rv;
 
+	if (!n)
+		return (ft_strdup("0"));
+	big = n;
+	big = (big * ((big > 0) - (big < 0)));
 	i = 0;
-	lnbr = (long int)nbr;
-	if (lnbr < 0)
+	if (n < 0)
+		i = 1;
+	rv = malloc(i + ft_nblen(big) + 1);
+	if (!rv)
+		return (rv);
+	if (i == 1)
+		rv[0] = '-';
+	i = i + ft_nblen(big);
+	rv[i] = '\0';
+	while (big > 9)
 	{
-		lnbr *= -1;
-		itoa = malloc(ft_count(lnbr) + 2);
-		if (!itoa)
-			return (ft_calloc(0, 0));
-		itoa[i++] = '-';
+		rv[--i] = big % 10 + '0';
+		big /= 10;
 	}
-	else
-		itoa = malloc(ft_count(lnbr) + 1);
-	if (!itoa)
-		return (ft_calloc(0, 0));
-	return (convert(itoa, lnbr, ft_count(lnbr), i));
+	rv[--i] = big % 10 + '0';
+	return (rv);
 }

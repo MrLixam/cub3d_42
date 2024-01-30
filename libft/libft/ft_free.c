@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 18:54:00 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/10/24 17:05:20 by gpouzet          ###   ########.fr       */
+/*   Created: 2024/01/30 19:31:13 by lvincent          #+#    #+#             */
+/*   Updated: 2024/01/30 19:32:18 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../list.h"
 
-t_list	*ft_lstlast(t_list *lst)
+#include "../libft.h"
+
+void	ft_free(void *mem)
 {
-	if (lst == NULL)
-		return (0);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
+	free(mem);
+	mem = NULL;
 }

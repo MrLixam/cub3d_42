@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmerge.c                                      :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 14:35:30 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/04/26 14:38:53 by gpouzet          ###   ########.fr       */
+/*   Created: 2024/01/30 19:49:34 by lvincent          #+#    #+#             */
+/*   Updated: 2024/01/30 20:05:38 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../libft.h"
 
-char	*ft_strmerge(char *s1, char *s2)
+int	ft_isspace(int c)
 {
-	char	*tmp;
-
-	tmp = ft_strjoin(s1, s2);
-	free(s1);
-	free(s2);
-	return (tmp);
+	return (c == ' ' || (c <= 13 && c >= 9));
 }

@@ -3,29 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 18:31:36 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/04/14 12:56:54 by gpouzet          ###   ########.fr       */
+/*   Created: 2022/10/13 00:15:28 by lvincent          #+#    #+#             */
+/*   Updated: 2024/01/30 07:53:09 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+size_t	ft_putnbr_fd(int n, int fd)
 {
-	long int	nb;
+	long long	big;
+	size_t		i;
 
-	nb = (long int)n;
-	if (nb < 0)
+	big = n;
+	i = 0;
+	if (big < 0)
 	{
-		ft_putchar_fd('-', fd);
-		nb *= -1;
+		i += ft_putchar_fd('-', fd);
+		big = big * -1;
 	}
-	if (nb > 9)
+	if (big <= 9)
 	{
-		ft_putnbr_fd(nb / 10, fd);
-		ft_putchar_fd(nb % 10 + '0', fd);
+		i += ft_putchar_fd('0' + big, fd);
+		return (i);
 	}
 	else
-		ft_putchar_fd(nb + '0', fd);
+	{
+		i += ft_putnbr_fd(big / 10, fd);
+		i += ft_putchar_fd('0' + big % 10, fd);
+	}
+	return (i);
 }

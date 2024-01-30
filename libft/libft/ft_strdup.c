@@ -5,28 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/26 16:18:26 by gpouzet           #+#    #+#             */
-/*   Updated: 2024/01/30 04:04:05 by lvincent         ###   ########.fr       */
+/*   Created: 2022/10/04 19:02:52 by lvincent          #+#    #+#             */
+/*   Updated: 2024/01/30 07:53:09 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strdup(const char *src)
+char	*ft_strdup(const char *s)
 {
-	char	*tmp;
-	char	*dest;
-	size_t	i;
+	size_t			size;
+	unsigned int	i;
+	char			*new;
 
+	size = ft_strlen(s) + 1;
 	i = 0;
-	tmp = (char *)src;
-	dest = malloc(ft_strlen(tmp) + 1);
-	if (!dest)
-		return (dest);
-	while (i < ft_strlen(tmp) + 1)
+	new = malloc(size);
+	if (!new)
+		return (new);
+	while (s[i])
 	{
-		dest[i] = tmp[i];
+		new[i] = s[i];
 		i++;
 	}
-	return (dest);
+	new[i] = '\0';
+	return (new);
 }

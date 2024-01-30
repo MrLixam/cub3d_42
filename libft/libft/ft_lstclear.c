@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 13:45:06 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/04/14 13:45:52 by gpouzet          ###   ########.fr       */
+/*   Created: 2022/10/14 20:16:40 by lvincent          #+#    #+#             */
+/*   Updated: 2024/01/30 07:53:09 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "../libft.h"
 
-int	ft_printf(const char *str, ...);
+void	ft_lstclear(t_list **lst, void (*del)(void*))
+{
+	t_list	*tmp;
 
-#endif
+	if (lst != NULL && del != NULL)
+	{
+		tmp = *lst;
+		while (tmp != NULL)
+		{
+			tmp = tmp->next;
+			ft_lstdelone(*lst, del);
+			*lst = tmp;
+		}
+	}
+}

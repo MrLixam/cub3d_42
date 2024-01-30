@@ -5,24 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 14:42:43 by gpouzet           #+#    #+#             */
-/*   Updated: 2024/01/30 03:32:28 by lvincent         ###   ########.fr       */
+/*   Created: 2022/10/02 21:29:13 by lvincent          #+#    #+#             */
+/*   Updated: 2024/01/30 07:53:09 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
-
-	if (!str)
+	if (!s)
 		return (NULL);
-	i = ft_strlen(str) + 1;
-	while (c > 256)
-		c -= 256;
-	while (i--)
-		if (*str++ == c)
-			return ((char *)--str);
-	return (0);
+	while (*s != '\0')
+	{
+		if (*s == (unsigned char)c)
+			return ((char *)s);
+		s++;
+	}
+	if (c == '\0')
+		return ((char *)s);
+	return (NULL);
 }

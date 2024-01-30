@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_len_arr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 18:40:58 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/04/14 12:37:51 by gpouzet          ###   ########.fr       */
+/*   Created: 2023/05/27 17:28:53 by lvincent          #+#    #+#             */
+/*   Updated: 2024/01/30 07:53:09 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../list.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+#include "../libft.h"
+
+size_t	ft_len_arr(char **foo)
 {
-	new->next = *lst;
-	*lst = new;
+	size_t	i;
+
+	i = -1;
+	while (foo[++i])
+		;
+	return (i);
 }

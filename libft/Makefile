@@ -5,68 +5,92 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/03 16:01:39 by gpouzet           #+#    #+#              #
-#    Updated: 2024/01/30 04:10:38 by lvincent         ###   ########.fr        #
+#    Created: 2022/11/11 15:46:24 by lvincent          #+#    #+#              #
+#    Updated: 2024/01/30 20:04:15 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = clang
-FLAGS =	-Wall -Wextra -Werror
+#Colors !
+
+GREEN = \033[0;32m
+
+RED = \033[0;31m
+
+RED_B = \033[1;31m
+
+YELLOW = \033[1;33m
+
+BLUE = \033[0;34m
+
+RESET = \033[0m
+
+#Sources relative to get_next_line
+SRC +=	get_next_line/get_next_line.c get_next_line/get_next_line_init.c \
+		get_next_line/get_next_line_mem.c get_next_line/get_next_line_misc.c
+
+#Sources relative to ft_printf
+SRC	+=	ft_printf/ft_printf.c ft_printf/ft_printf_utils1.c
+
+#Sources relative file descriptor writing
+SRC +=	libft/ft_putendl_fd.c libft/ft_putnbr_fd.c libft/ft_putstr_fd.c libft/ft_putchar_fd.c
+
+#Miscellaneous utilities
+SRC +=	libft/ft_itoa.c libft/ft_atoi.c libft/ft_split.c libft/ft_calloc.c libft/ft_memcmp.c libft/ft_free.c libft/ft_len_arr.c\
+		
+#Sources relative to single char operations
+SRC +=	libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_isascii.c \
+		libft/ft_isdigit.c libft/ft_isprint.c libft/ft_isspace.c \
+		libft/ft_tolower.c libft/ft_toupper.c
+
+#Sources relative to memory manipulation	
+SRC	+=	libft/ft_bzero.c libft/ft_memcpy.c libft/ft_memmove.c libft/ft_memset.c libft/ft_memchr.c
+
+#Sources relative to string manipulation
+SRC +=	libft/ft_strchr.c libft/ft_strlcat.c libft/ft_strlcpy.c libft/ft_strdup.c libft/ft_strnstr.c \
+		libft/ft_strlen.c libft/ft_strncmp.c libft/ft_strrchr.c libft/ft_substr.c libft/ft_strtrim.c \
+		libft/ft_strjoin.c libft/ft_strmapi.c libft/ft_striteri.c
+
+#Sources relative to chained lists
+SRC +=	libft/ft_lstadd_front.c libft/ft_lstnew.c libft/ft_lstsize.c libft/ft_lstlast.c \
+		libft/ft_lstadd_back.c libft/ft_lstclear.c libft/ft_lstdelone.c libft/ft_lstiter.c libft/ft_lstmap.c
+
+OBJ = ${SRC:.c=.o}
 
 NAME = libft.a
 
-SRC 	=	libft/ft_isalpha.c libft/ft_isdigit.c libft/ft_isalnum.c libft/ft_isascii.c \
-			libft/ft_isprint.c libft/ft_toupper.c libft/ft_tolower.c libft/ft_isnumber.c \
-			libft/ft_memset.c libft/ft_bzero.c libft/ft_memcpy.c \
-			libft/ft_memchr.c libft/ft_memcmp.c libft/ft_memmove.c \
-			libft/ft_strlen.c libft/ft_strlcpy.c libft/ft_strlcat.c \
-			libft/ft_strchr.c libft/ft_strrchr.c libft/ft_strncmp.c \
-			libft/ft_strnstr.c libft/ft_calloc.c libft/ft_strdup.c \
-			libft/ft_strjoin.c libft/ft_strtrim.c libft/ft_split.c \
-			libft/ft_atoi.c libft/ft_itoa.c libft/ft_substr.c \
-			libft/ft_strmapi.c libft/ft_striteri.c \
-			libft/ft_putchar_fd.c libft/ft_putstr_fd.c \
-			libft/ft_putendl_fd.c libft/ft_putnbr_fd.c \
-			libft/ft_tabstrlen.c libft/ft_strmerge.c\
+CFLAGS = -Wall -Werror -Wextra
 
-SRC 	+=	lst/ft_lstnew.c lst/ft_lstadd_front.c lst/ft_lstsize.c \
-			lst/ft_lstlast.c lst/ft_lstadd_back.c lst/ft_lstdelone.c \
-			lst/ft_lstclear.c lst/ft_lstiter.c lst/ft_lstmap.c \
-			
-SRC 	+=	printf/ft_printf.c\
-			printf/ft_charsize.c printf/ft_digits.c printf/ft_hexa.c\
-			printf/ft_toolsprintf.c\
-			
-SRC 	+=	GNL/get_next_line.c\
-			GNL/get_next_line_utils.c\
-			
-SRC		+=	stack/stack.c stack/stack_utils.c\
+RM = rm -f
 
-OBJ		= $(SRC:.c=.o)
+CC = clang
 
-all: $(NAME)
+AR = ar
 
-$(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@echo -en "\033[2K"
-	@echo -en "\\r\033[1;32m[compilation completed]"
+AR_FLAGS = rc
 
-%.o: %.c
-	@echo -en "\\r\033[2K"
-	@echo -en "\\r\033[1;33m[compiling...]"$<
-	@$(CC) $(FLAGS) -o $@ -c $<
+all : $(NAME)
 
+.c.o:
+
+	@echo -en "\\r\033[2K$(GREEN)Compiling $<"
+	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+
+$(NAME) : $(OBJ)
+	@echo -e "\n$(BLUE)Compiled object files for libft"
+	@$(AR) $(AR_FLAGS) $(NAME) $(OBJ)
+	@echo -e "$(YELLOW)Compiled libft!$(RESET)"
+	
 clean:
-	@rm -rf $(OBJ)
-	@echo -e "\033[1;32m[object files cleaned]"
+	@$(RM) $(OBJ)
+	@echo -e "$(RED)removed object files from libft$(RESET)"
 
 fclean: clean
-	@rm -rf $(NAME) 
-	@echo -e "\033[1;32m[Library deleted]"
+	@$(RM) $(NAME)
+	@echo -e "$(RED_B)Removed $(NAME) $(RESET)"
 
-re: fclean all
+re: clean all
 
-debug_lib: FLAGS += -g
-debug_lib: $(NAME)
+debug: CFLAGS += -g
+debug: $(NAME)
 
-.PHONY: all so list clean fclean re debug_lib
+.PHONY: all clean fclean re debug

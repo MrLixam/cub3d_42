@@ -3,65 +3,101 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/27 10:53:34 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/04/14 12:59:25 by gpouzet          ###   ########.fr       */
+/*   Created: 2022/10/12 16:01:06 by lvincent          #+#    #+#             */
+/*   Updated: 2024/01/30 07:53:09 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../libft.h"
 
-static int	cut(char const *s, char c)
+static unsigned int	ft_count_str(const char *s, char c)
 {
-	int	ct;
-	int	i;
+	unsigned int	nb_str;
 
-	i = 0;
-	ct = 1;
-	if (!*s)
-		return (0);
-	while (s[++i])
-		if (s[i] == c && s[i - 1] != c)
-			ct++;
-	if (s[ft_strlen(s) - 1] == c)
-		ct--;
-	return (ct);
+	nb_str = 0;
+	while (*s != '\0')
+	{
+		if (*s != c)
+		{
+			while (*s != '\0' && *s != c)
+				s++;
+			nb_str++;
+			continue ;
+		}
+		s++;
+	}
+	return (nb_str);
 }
 
-static char	*wordcutter(char const *s, char c)
+static char	*ft_get_str(char const *s, char c)
 {
-	int		i;
+	char			*tmp;
+	unsigned int	len;
+
+	while (*s == c)
+		s++;
+	if (*s != c && *s != '\0')
+	{
+		len = 0;
+		while (s[len] != c && s[len] != '\0')
+			len++;
+		tmp = ft_substr(s, 0, len);
+		return (tmp);
+	}
+	tmp = ft_strdup("");
+	return (tmp);
+}
+
+void	ft_free_arr(char **arr)
+{
+	unsigned int	i;
 
 	i = 0;
-	while (s[i] != c && s[i])
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
 		i++;
-	return (ft_substr(s, 0, i));
+	}
+	free (arr);
+}
+
+static size_t	ft_check_val(char *str, char **arr)
+{
+	size_t	j;
+
+	j = ft_strlen((const char *)str);
+	if (j == 0)
+		ft_free_arr(arr);
+	free(str);
+	return (j);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**split;
-	int		cuts;
-	int		i;
-	int		j;
+	char			**strs;
+	unsigned int	u_ints[3];
 
-	i = 0;
-	j = 0;
-	if (!s)
-		return (0);
-	cuts = cut(s, c);
-	split = ft_calloc(cuts + 1, sizeof(char *));
-	if (!split)
-		return (split);
-	while (cuts-- && s[i] && s)
+	if (s == NULL)
+		return (NULL);
+	u_ints[2] = ft_count_str(s, c);
+	strs = ft_calloc(u_ints[2] + 1, sizeof(char *));
+	if (!strs)
+		return (NULL);
+	strs[u_ints[2]] = NULL;
+	u_ints[0] = 0;
+	while (u_ints[2])
 	{
-		while (s[i] == c && s[i])
-			i++;
-		if (s[i] || s[i - 1] == c)
-			split[j++] = wordcutter(s + i, c);
-		while (s[i] != c && s[i])
-			i++;
+		while (*s == c)
+			s++;
+		u_ints[1] = ft_check_val(ft_get_str(s, c), strs);
+		if (!u_ints[1])
+			return (NULL);
+		strs[u_ints[0]++] = ft_get_str(s, c);
+		while (u_ints[1]--)
+			s++;
+		u_ints[2]--;
 	}
-	split[j] = 0;
-	return (split);
+	return (strs);
 }

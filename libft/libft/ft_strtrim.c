@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:22:33 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/04/14 13:02:43 by gpouzet          ###   ########.fr       */
+/*   Updated: 2024/01/30 04:08:54 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../libft.h"
 
 char	*ft_strtrim(char const *s1, char const *set)
@@ -17,8 +18,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int	start;
 	int	i;
 
-	if (!s1)
-		return (ft_calloc(0, 0));
+	if (!s1 || !set)
+		return (NULL);
 	i = ft_strlen(s1);
 	count = 0;
 	start = 0;

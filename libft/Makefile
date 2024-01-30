@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:01:39 by gpouzet           #+#    #+#              #
-#    Updated: 2023/10/28 11:17:05 by lvincent         ###   ########.fr        #
+#    Updated: 2024/01/30 04:10:38 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC 	+=	printf/ft_printf.c\
 			printf/ft_toolsprintf.c\
 			
 SRC 	+=	GNL/get_next_line.c\
+			GNL/get_next_line_utils.c\
 			
 SRC		+=	stack/stack.c stack/stack_utils.c\
 

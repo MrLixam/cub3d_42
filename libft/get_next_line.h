@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:54:58 by gpouzet           #+#    #+#             */
-/*   Updated: 2024/01/27 22:56:11 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/30 03:26:20 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "libft.h"
 # include <unistd.h>
 
-char	*get_next_line(int fd, char ***save);
-
+char	*get_next_line(int fd);
+char	**gnl_storage(void);
+void	gnl_release(void);
 #endif

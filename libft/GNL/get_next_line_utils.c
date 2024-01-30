@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 14:42:43 by gpouzet           #+#    #+#             */
-/*   Updated: 2024/01/30 03:32:28 by lvincent         ###   ########.fr       */
+/*   Created: 2024/01/30 02:34:31 by lvincent          #+#    #+#             */
+/*   Updated: 2024/01/30 03:50:00 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../get_next_line.h"
 
-char	*ft_strchr(const char *str, int c)
+char	**gnl_storage(void)
 {
-	int	i;
+	static char	*file[1024] = {NULL};
 
-	if (!str)
-		return (NULL);
-	i = ft_strlen(str) + 1;
-	while (c > 256)
-		c -= 256;
-	while (i--)
-		if (*str++ == c)
-			return ((char *)--str);
-	return (0);
+	return (file);
+}
+
+void	gnl_release(void)
+{
+	char	**storage;
+	int		i;
+
+	i = 0;
+	storage = gnl_storage();
+	while (i < 1024)
+	{
+		if (storage[i])
+			free(storage[i]);
+		i++;
+	}
 }

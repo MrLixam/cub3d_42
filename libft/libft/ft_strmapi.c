@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 18:49:16 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/04/14 13:01:35 by gpouzet          ###   ########.fr       */
+/*   Updated: 2024/01/30 03:43:25 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
@@ -17,8 +18,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 
 	i = 0;
-	if (!s)
-		return (ft_calloc(0, 0));
+	if (!s || !f)
+		return (NULL);
 	mapi = ft_calloc(1, ft_strlen(s) + 1);
 	if (!mapi)
 		return (ft_calloc(0, 0));

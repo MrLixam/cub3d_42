@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 16:19:40 by gpouzet           #+#    #+#             */
-/*   Updated: 2024/01/28 00:02:00 by lvincent         ###   ########.fr       */
+/*   Created: 2022/12/13 20:12:17 by lvincent          #+#    #+#             */
+/*   Updated: 2024/01/30 03:28:34 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ static char	*read_mini_line(char *save, int fd)
 	}
 	free(tmp);
 	return (save);
-} 
-                                                                                                                                                                
+}
+
 static char	*get_curr_line(char *save)
 {
-	size_t	i;
+	int		i;
 	char	*rv;
 
 	i = 0;
@@ -90,8 +90,8 @@ static char	*get_curr_line(char *save)
 static char	*new_save(char *save)
 {
 	char	*rv;
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (save[i] && save[i] != '\n')
@@ -113,16 +113,18 @@ static char	*new_save(char *save)
 	return (rv);
 }
 
-char	*get_next_line(int fd, char ***save)
+char	*get_next_line(int fd)
 {
-	char		*buffer;
+	char	**save;
+	char	*buffer;
 
+	save = gnl_storage();
 	if (fd < 0 || fd > 1023 || BUFFER_SIZE < 1)
 		return (NULL);
-	*save[fd] = read_mini_line(*save[fd], fd);
-	if (!*save[fd])
+	save[fd] = read_mini_line(save[fd], fd);
+	if (!save[fd])
 		return (NULL);
-	buffer = get_curr_line(*save[fd]);
-	*save[fd] = new_save(*save[fd]);
+	buffer = get_curr_line(save[fd]);
+	save[fd] = new_save(save[fd]);
 	return (buffer);
 }

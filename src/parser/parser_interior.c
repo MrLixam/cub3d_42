@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 00:11:04 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/30 06:38:12 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/30 21:51:28 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,6 @@ int	parse_map(t_game game)
 int	valid_config()
 {
 	char *line;
+
+	
 }

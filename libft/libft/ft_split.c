@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:01:06 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/30 07:53:09 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/30 21:52:58 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	ft_free_arr(char **arr)
 	i = 0;
 	while (arr[i] != NULL)
 	{
-		free(arr[i]);
+		ft_free(arr[i]);
 		i++;
 	}
-	free (arr);
+	ft_free(arr);
 }
 
 static size_t	ft_check_val(char *str, char **arr)
@@ -70,7 +70,7 @@ static size_t	ft_check_val(char *str, char **arr)
 	j = ft_strlen((const char *)str);
 	if (j == 0)
 		ft_free_arr(arr);
-	free(str);
+	ft_free(str);
 	return (j);
 }
 

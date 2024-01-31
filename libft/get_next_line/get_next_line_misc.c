@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:03:14 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/30 21:49:32 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/30 23:51:46 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@
 	output: the number of lines in the file, as a size_t
 */
 
-size_t	gnl_count_lines(int fd)
+size_t	gnl_count_lines(char *path)
 {
+	int		fd;
 	size_t	i;
 	char	*line;
 
+	fd = open(path, O_RDONLY);
 	i = 0;
 	while (1)
 	{
@@ -41,5 +43,14 @@ size_t	gnl_count_lines(int fd)
 			break ;
 	}
 	gnl_release_fd(fd);
+	close(fd);
 	return (i);
+}
+
+
+char **gnl_full_file(char *path)
+{
+	char **result;
+
+	result = ft_calloc(gnl_count_lines(path), sizeof(char *));
 }

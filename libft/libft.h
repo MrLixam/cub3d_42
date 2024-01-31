@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 22:09:29 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/30 20:04:52 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:20:45 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ft_free(void *mem);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 size_t	ft_len_arr(char **foo);
+void	ft_free_arr(char **arr);
 
 /*	memory manipulation	*/
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -112,7 +113,8 @@ char	*get_next_line(int fd);
 char	**gnl_storage(void);
 void	gnl_release(void);
 void	gnl_release_fd(int fd);
-size_t	gnl_count_lines(int fd);
+size_t	gnl_count_lines(char *path);
+char	**gnl_full_file(char *path);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 int		gnl_fd_max(void);
 

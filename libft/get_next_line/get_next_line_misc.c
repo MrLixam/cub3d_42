@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:03:14 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/30 23:51:46 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:01:47 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,28 @@ size_t	gnl_count_lines(char *path)
 }
 
 
-char **gnl_full_file(char *path)
+char	**gnl_full_file(char *path)
 {
-	char **result;
+	char	**result;
+	char	*buffer;
+	int		fd;
+	int		i;
 
-	result = ft_calloc(gnl_count_lines(path), sizeof(char *));
+	i = gnl_count_lines(path);
+	if (i == 0)
+		return (NULL);
+	result = ft_calloc(i + 1, sizeof(char *));
+	if (!result)
+		return (NULL);
+	i = 0;
+	fd = open(path, O_RDONLY);
+	while (1)
+	{
+		buffer = get_next_line(fd);
+		if (!buffer)
+			break ;
+		result[i++] = buffer;
+	}
+	close(fd);
+	return (result);
 }

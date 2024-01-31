@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:01:06 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/30 21:52:58 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:18:49 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,6 @@ static char	*ft_get_str(char const *s, char c)
 	}
 	tmp = ft_strdup("");
 	return (tmp);
-}
-
-void	ft_free_arr(char **arr)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (arr[i] != NULL)
-	{
-		ft_free(arr[i]);
-		i++;
-	}
-	ft_free(arr);
 }
 
 static size_t	ft_check_val(char *str, char **arr)

@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:03:14 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/31 21:01:47 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:06:29 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,12 @@ char	**gnl_full_file(char *path)
 	if (i == 0)
 		return (NULL);
 	result = ft_calloc(i + 1, sizeof(char *));
-	if (!result)
-		return (NULL);
 	i = 0;
 	fd = open(path, O_RDONLY);
+	if (fd == -1 && result != NULL)
+		ft_free(result);
+	if (fd == -1 || !result)
+		return (NULL);
 	while (1)
 	{
 		buffer = get_next_line(fd);

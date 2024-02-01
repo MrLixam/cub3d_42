@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 08:47:51 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/25 00:27:59 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/01 21:49:10 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,10 @@ void	ft_error(char *target, char *message)
 	}
 	write(2, message, ft_strlen(message));
 	write(2, "\n", 1);
+}
+
+void ft_perror(char *prefix)
+{
+	write(2, "Error\n", 6);
+	perror(prefix);
 }

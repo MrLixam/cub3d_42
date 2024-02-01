@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:03:14 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/01 17:06:29 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/01 21:45:51 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ size_t	gnl_count_lines(char *path)
 	char	*line;
 
 	fd = open(path, O_RDONLY);
+	if (fd == -1)
 	i = 0;
 	while (1)
 	{

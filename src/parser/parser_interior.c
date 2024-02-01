@@ -6,11 +6,11 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 00:11:04 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/30 21:51:28 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/01 22:09:08 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../../includes/parser.h"
 
 int	check_tile(t_game game, size_t y, size_t x)
 {
@@ -43,9 +43,19 @@ int	parse_map(t_game game)
 	return (0);
 }
 
-int	valid_config()
+int	base_tests(char *path)
 {
-	char *line;
+	if (gnl_count_lines(path) == 0)
+	{
+		ft_perror(path);
+		return (1);
+	}
+	return (0);
+}
 
-	
+int	valid_config(char *path)
+{
+
+	base_tests(path);
+	return (1);
 }

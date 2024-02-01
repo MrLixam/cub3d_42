@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:39:11 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/24 23:13:22 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/01 22:11:11 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,19 @@
 
 int	main(void)
 {
-	if (!ext_parser("..cub", ".cub"))
+	if (!parse_extern("..cub", ".cub"))
 		printf("ok\n");
-	if (!ext_parser("test.cub", ".cub"))
+	if (!parse_extern("test.cub", ".cub"))
 		printf("ok\n");
-	if (!ext_parser(".cub", ".cub"))
+	if (!parse_extern(".cub", ".cub"))
 		printf("ko\n");
-	if (!ext_parser("caca.cu", ".cub"))
+	if (!parse_extern("caca.cu", ".cub"))
 		printf("ko\n");
-	if (!ext_parser("cu", ".cub"))
+	if (!parse_extern("cu", ".cub"))
 		printf("ko\n");
-	if (!ext_parser("wqwqwqwqwwqwqw.cub.cub", ".cub"))
-		printf("ok\n");
-	
-	char *test = "Hello!";
-	char *output;
-
-	output = ft_strinsert(test, " World", 5);
-	printf("%s\n", output);
-	free(output);
+	if (!parse_extern("wqwqwqwqwwqwqw.cub.cub", ".cub"))
+		printf("ko\n");
+	if (!parse_extern("caca.cub", ".cub"))
+		printf("ko\n");
 	return (0);
 }

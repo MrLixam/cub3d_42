@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:02:30 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/22 16:44:24 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/01 22:07:23 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 
 # include "cub3d.h"
 
-int	name_parser(char *name);
-int	parse_ext(char *name);
+int	name_parser(char *name, char *ext);
+int	parse_extern(char *name, char *ext);
 int	is_valid_file(char *name);
-int	ext_parser(char *name, char *ext);
 
 #endif

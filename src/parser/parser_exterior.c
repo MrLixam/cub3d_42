@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 08:43:10 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/25 00:23:11 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/01 21:54:24 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	not_valid_file(char *name)
 	}
 	fd = open(name, O_RDONLY);
 	if (fd == -1)
-		return (-1);
+		return (1);
 	close(fd);
 	return (0);
 }
@@ -48,14 +48,7 @@ int	parse_extern(char *name, char *ext)
 	char	*error;
 
 	if (not_valid_file(name) == 1)
-		ft_error(name, "is a directory");
-	if (not_valid_file(name) == -1)
-	{
-		if (errno == ENOENT)
-			ft_error(name, "file does not exist");
-		else if (errno == EACCES)
-			ft_error(name, "permission denied");
-	}
+		ft_perror(name);
 	if (not_valid_file(name))
 		return (1);
 	error = ft_strinsert(

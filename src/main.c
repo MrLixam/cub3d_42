@@ -6,11 +6,10 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:39:11 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/01 22:11:11 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/01 22:16:37 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "../includes/cub3d.h"
 
 //main temporaire de test, fait un autre main et met celui là en commentaire si t'a besoin de faire des tests pour l'exec please :)

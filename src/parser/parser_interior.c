@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 00:11:04 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/01 22:09:08 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/04 06:15:26 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,13 @@ int	parse_map(t_game game)
 
 int	base_tests(char *path)
 {
+	errno = 0;
 	if (gnl_count_lines(path) == 0)
 	{
-		ft_perror(path);
+		if (errno)
+			ft_perror(path);
+		else
+			ft_error(path, "file is empty");
 		return (1);
 	}
 	return (0);
@@ -56,6 +60,7 @@ int	base_tests(char *path)
 int	valid_config(char *path)
 {
 
-	base_tests(path);
-	return (1);
+	if (base_tests(path))
+		return (1);
+	
 }

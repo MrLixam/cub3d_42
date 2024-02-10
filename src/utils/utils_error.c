@@ -6,11 +6,11 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 08:47:51 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/10 08:54:17 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/10 12:49:16 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/utils.h"	
+#include "../../includes/cub3d.h"	
 
 void	ft_error(char *target, char *message)
 {

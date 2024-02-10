@@ -6,11 +6,11 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:25:21 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/24 23:32:12 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/10 13:22:31 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/utils.h"
+#include "../../includes/cub3d.h"
 
 int	is_wspace(int c)
 {
@@ -47,4 +47,25 @@ char	*ft_strinsert(char *base, char *ins, size_t pos)
 	while (base[index[0]])
 		new[index[1]++] = base[index[0]++];
 	return (new);
+}
+
+t_graphic	*get_graph(void)
+{
+	static t_graphic graphics;
+	return (&graphics);
+}
+
+void	reset_graph(void)
+{
+	t_graphic *graphics;
+
+	graphics = get_graph();
+	if (graphics->north)
+		ft_free(graphics->north);
+	if (graphics->south)
+		ft_free(graphics->south);
+	if (graphics->west)
+		ft_free(graphics->west);
+	if (graphics->east)
+		ft_free(graphics->east);
 }

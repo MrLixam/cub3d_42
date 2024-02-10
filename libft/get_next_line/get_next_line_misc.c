@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:03:14 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/05 15:26:32 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/10 13:44:52 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 	input : fd, a valid file descriptor
 	
 	output: the number of lines in the file, as a size_t
+
+	errors: will return 0 if file cannot be opened
+			if anything fails in get_next_line, function will return how many
+			lines it counted before get_next_line failed
 */
 
 size_t	gnl_count_lines(char *path)
@@ -39,9 +43,8 @@ size_t	gnl_count_lines(char *path)
 		{
 			i++;
 			ft_free(line);
-			continue ;
 		}
-		if (!line)
+		else
 			break ;
 	}
 	gnl_release_fd(fd);
@@ -49,6 +52,14 @@ size_t	gnl_count_lines(char *path)
 	return (i);
 }
 
+/*
+	Copies a whole file as a string array (char **) removing all newline characters
+
+	in: char* corresponding to the path to a file
+	out : char ** the file with newline characters removed
+
+	error cases: returns NULL if it cannot open the file, or allocation somehow fails
+*/
 
 char	**gnl_full_file(char *path)
 {
@@ -60,11 +71,11 @@ char	**gnl_full_file(char *path)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	buffer = NULL;
+	buffer2 = NULL;
 	while (1)
 	{
 		buffer = get_next_line(fd);
-		if (buffer = NULL)
+		if (buffer == NULL)
 			break ;
 		buffer2 = ft_strjoin_gnl(buffer2, buffer);
 		if (buffer2 == NULL)
@@ -72,6 +83,7 @@ char	**gnl_full_file(char *path)
 		free(buffer);
 	}
 	result = ft_split(buffer2, '\n');
+	ft_free(buffer2);
 	gnl_release_fd(fd);
 	close(fd);
 	return (result);

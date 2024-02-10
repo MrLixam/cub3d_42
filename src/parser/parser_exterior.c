@@ -6,11 +6,11 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 08:43:10 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/01 21:54:24 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/10 12:48:57 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/cub3d.h"
 
 int	name_parser(char *name, char *ext)
 {

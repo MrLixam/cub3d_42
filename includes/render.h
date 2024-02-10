@@ -6,13 +6,11 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:03:16 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/20 11:31:34 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/10 12:51:30 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
-
-# include "cub3d.h"
 
 #endif

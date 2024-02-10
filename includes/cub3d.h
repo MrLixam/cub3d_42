@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:02:09 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/01 22:09:34 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/10 08:38:39 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,23 @@
 # include <sys/stat.h>
 # include <errno.h>
 # include <stdio.h>
+
+typedef struct s_color
+{
+	int	red;
+	int	green;
+	int	blue;
+}			t_color;
+
+typedef struct s_graphic_data
+{
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	t_color	floor;
+	t_color	ceiling;
+}			t_graphic;
 
 typedef struct s_data
 {
@@ -70,6 +87,5 @@ typedef struct s_game
 	t_pc		player;
 	int			collectible;
 }			t_game;
-
 
 #endif

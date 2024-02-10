@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 00:11:04 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/08 09:00:13 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/10 08:25:02 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ int	index_path(char *line, char **storage)
 
 int	is_path(char *line)
 {
-	int	rv;
+	int			rv;
+	t_parsing	*game;
 
 
 	rv = 0;

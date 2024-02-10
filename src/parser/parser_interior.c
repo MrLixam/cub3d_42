@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 00:11:04 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/10 08:25:02 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/10 08:57:03 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	parse_map(t_game game)
 		x = 0;
 		while (x < game.map_width)
 		{
-			if (!is_in_set("01NSWE", game.map[y][x]))
+			if (!is_in_set("01NSWE ", game.map[y][x]))
 				return (1);
 			if (is_in_set("0NSWE", game.map[y][x]) && check_tile(game, y, x))
 				return (1);
@@ -88,9 +88,7 @@ int	index_path(char *line, char **storage)
 
 int	is_path(char *line)
 {
-	int			rv;
-	t_parsing	*game;
-
+	int	rv;
 
 	rv = 0;
 	if (ft_strlen(line) < 3)
@@ -110,8 +108,6 @@ int	is_path(char *line)
 
 int	valid_config(char *path)
 {
-
 	if (base_tests(path))
 		return (1);
-	
 }

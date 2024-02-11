@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:02:09 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/10 12:53:08 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/11 18:37:15 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "utils.h"
 # include "parser.h"
 # include "render.h"
+# include "structs.h"
 # include "../MacroLibX/includes/mlx.h"
 # include <fcntl.h>
 # include <stdlib.h>

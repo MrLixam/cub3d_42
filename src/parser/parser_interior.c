@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 00:11:04 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/10 13:32:21 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/11 23:02:59 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,30 @@ int	is_path(char *line)
 	else
 		return (1);
 	return (rv);
+}
+
+int	index_color(char *line, t_color *color)
+{
+	(void)line;
+	(void)color; //placeholder
+	return (0);
+}
+int	is_color(char *line)
+{
+	int			rv;
+	t_graphic	*graphics;
+
+	rv = 0;
+	graphics = get_graph();
+	if (ft_strlen(line) < 2)
+		return (1);
+	if (line[0] == 'F' && ft_isspace(line[1]))
+		rv = index_color(line, graphics->floor);
+	else if (line[0] == 'C' && ft_isspace(line[1]))
+		rv = index_color(line, graphics->ceiling);
+	else
+		return (1);
+	return (rv)
 }
 
 int	valid_config(char *path)

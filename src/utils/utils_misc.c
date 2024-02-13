@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:25:21 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/10 13:22:31 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:13:26 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ char	*ft_strinsert(char *base, char *ins, size_t pos)
 
 t_graphic	*get_graph(void)
 {
-	static t_graphic graphics;
+	static t_graphic	graphics;
+
 	return (&graphics);
 }
 
 void	reset_graph(void)
 {
-	t_graphic *graphics;
+	t_graphic	*graphics;
 
 	graphics = get_graph();
 	if (graphics->north)

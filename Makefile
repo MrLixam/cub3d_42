@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 05:51:01 by lvincent          #+#    #+#              #
-#    Updated: 2024/01/25 00:17:25 by lvincent         ###   ########.fr        #
+#    Updated: 2024/02/13 16:50:34 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 SRC 	=	src/main.c \
-			src/parser/parser_exterior.c src/parser/parser_interior.c \
 			src/utils/utils_misc.c src/utils/utils_error.c
 
 OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))

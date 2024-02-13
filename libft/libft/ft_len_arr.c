@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:28:53 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/30 07:53:09 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:05:56 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_len_arr(char **foo)
 {
 	size_t	i;
 
+	if (!foo)
+		return (0);
 	i = -1;
 	while (foo[++i])
 		;

@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 22:09:29 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/31 21:20:45 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 16:36:55 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	ft_putendl_fd(char *s, int fd);
 size_t	ft_putunbr_fd(unsigned int n, int fd);
 
 /*	miscellaneous utils functions	*/
+
+//convert a string to an int, atoi_error() is used to check for errors
 int		ft_atoi(const char *nptr);
+int		*atoi_error(void);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_free(void *mem);
 char	*ft_itoa(int n);

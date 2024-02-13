@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:03:14 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/10 13:44:52 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:23:15 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ size_t	gnl_count_lines(char *path)
 }
 
 /*
-	Copies a whole file as a string array (char **) removing all newline characters
+	Copies a whole file as a string array (char **) 
+	removing all newline characters
 
 	in: char* corresponding to the path to a file
 	out : char ** the file with newline characters removed
 
-	error cases: returns NULL if it cannot open the file, or allocation somehow fails
+	error cases: returns NULL if it cannot open the file,
+	or if allocation somehow fails
 */
 
 char	**gnl_full_file(char *path)

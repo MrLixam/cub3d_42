@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 00:11:04 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/11 23:02:59 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:07:01 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,26 @@ int	is_path(char *line)
 
 int	index_color(char *line, t_color *color)
 {
-	(void)line;
-	(void)color; //placeholder
+	int		value;
+	int		i;
+	char	**result;
+
+	while (ft_isspace(*line))
+		*line++;
+	result = ft_split(line, ',');
+	if (ft_len_arr(result) != 3)
+		ft_free_arr(result);
+	if (!result)
+		return (1);
+	i = 0;
+	while (i < 3)
+	{
+		value = ft_atoi(result[i]);
+		
+	}
 	return (0);
 }
+
 int	is_color(char *line)
 {
 	int			rv;
@@ -131,7 +147,7 @@ int	is_color(char *line)
 		rv = index_color(line, graphics->ceiling);
 	else
 		return (1);
-	return (rv)
+	return (rv);
 }
 
 int	valid_config(char *path)

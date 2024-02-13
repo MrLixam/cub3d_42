@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 18:43:58 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/13 19:16:33 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:34:31 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,23 @@ static int	ft_atoi_loop(char c, long long res, int sign)
 	return (res);
 }
 
+static int	ft_atoi_invalid(const char *nptr)
+{
+	*atoi_error() = 0;
+	if (!nptr)
+	{
+		*atoi_error() = 2;
+		return (1);
+	}
+	return (0);
+}
+
 int	ft_atoi(const char *nptr)
 {
 	int			sign;
 	long long	res;
 
-	*atoi_error() = 0;
-	if (!nptr)
-		*atoi_error() = 2;
-	if (!nptr)
+	if (ft_atoi_invalid(nptr))
 		return (0);
 	sign = 1;
 	res = 0;
@@ -60,5 +68,9 @@ int	ft_atoi(const char *nptr)
 			return (0);
 		nptr++;
 	}
+	if (*nptr)
+		*atoi_error() = 1;
+	if (*nptr)
+		return (0);
 	return ((int)(res * sign));
 }

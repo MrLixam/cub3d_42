@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:03:14 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/13 15:23:15 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:12:40 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ size_t	gnl_count_lines(char *path)
 		if (line)
 		{
 			i++;
-			ft_free(line);
+			free(line);
 		}
 		else
 			break ;
@@ -85,7 +85,7 @@ char	**gnl_full_file(char *path)
 		free(buffer);
 	}
 	result = ft_split(buffer2, '\n');
-	ft_free(buffer2);
+	free(buffer2);
 	gnl_release_fd(fd);
 	close(fd);
 	return (result);

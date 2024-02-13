@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:25:21 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/13 15:13:26 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:12:40 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,26 @@ void	reset_graph(void)
 
 	graphics = get_graph();
 	if (graphics->north)
-		ft_free(graphics->north);
+		free(graphics->north);
 	if (graphics->south)
-		ft_free(graphics->south);
+		free(graphics->south);
 	if (graphics->west)
-		ft_free(graphics->west);
+		free(graphics->west);
 	if (graphics->east)
-		ft_free(graphics->east);
+		free(graphics->east);
+	free(graphics->floor);
+	free(graphics->ceiling);
+}
+
+void	init_graph(void)
+{
+	t_graphic	*graphics;
+
+	graphics = get_graph();
+	graphics->north = NULL;
+	graphics->south = NULL;
+	graphics->west = NULL;
+	graphics->east = NULL;
+	graphics->floor = ft_calloc(1, sizeof(t_color));
+	graphics->ceiling = ft_calloc(1, sizeof(t_color));
 }

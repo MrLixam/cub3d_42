@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 15:46:24 by lvincent          #+#    #+#              #
-#    Updated: 2024/01/31 21:22:29 by lvincent         ###   ########.fr        #
+#    Updated: 2024/02/13 21:08:30 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRC +=	libft/ft_putendl_fd.c libft/ft_putnbr_fd.c libft/ft_putstr_fd.c libft/ft_
 
 #Miscellaneous utilities
 SRC +=	libft/ft_itoa.c libft/ft_atoi.c libft/ft_split.c libft/ft_calloc.c\
-		libft/ft_memcmp.c libft/ft_free.c libft/ft_len_arr.c libft/ft_free_arr.c
+		libft/ft_memcmp.c libft/ft_len_arr.c libft/ft_free_arr.c
 		
 #Sources relative to single char operations
 SRC +=	libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_isascii.c \

@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 22:09:29 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/13 16:36:55 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:41:21 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ size_t	ft_putunbr_fd(unsigned int n, int fd);
 int		ft_atoi(const char *nptr);
 int		*atoi_error(void);
 void	*ft_calloc(size_t nmemb, size_t size);
-void	ft_free(void *mem);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 size_t	ft_len_arr(char **foo);
@@ -113,7 +112,7 @@ size_t	ft_ptr(unsigned long long ptr);
 
 //get a single line from a file, with memory management! 
 char	*get_next_line(int fd);
-char	**gnl_storage(void);
+char	***gnl_storage(void);
 void	gnl_release(void);
 void	gnl_release_fd(int fd);
 size_t	gnl_count_lines(char *path);

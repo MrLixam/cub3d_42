@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:01:06 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/31 21:18:49 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:12:50 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static size_t	ft_check_val(char *str, char **arr)
 	j = ft_strlen((const char *)str);
 	if (j == 0)
 		ft_free_arr(arr);
-	ft_free(str);
+	free(str);
 	return (j);
 }
 

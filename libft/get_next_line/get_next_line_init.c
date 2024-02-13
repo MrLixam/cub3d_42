@@ -6,11 +6,12 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 02:34:31 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/30 20:54:11 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 22:00:47 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include <stdio.h>
 
 static char	*config_file(void)
 {
@@ -33,7 +34,7 @@ static char	*config_file(void)
 	}
 	if (readb == -1)
 		if (file)
-			ft_free(file);
+			free(file);
 	return (file);
 }
 
@@ -42,6 +43,7 @@ static int	init_max_fd(void)
 	char	*file;
 	char	*line;
 	int		retval;
+	int		i;
 
 	file = config_file();
 	if (file == NULL)
@@ -49,9 +51,15 @@ static int	init_max_fd(void)
 	line = ft_strnstr(file, "Max open files", ft_strlen(file));
 	if (!line)
 		return (1024);
-	line += 15;
+	i = 0;
+	line += 26;
+	while(ft_isdigit(line[i]))
+		i++;
+	line[i] = '\0';
 	retval = ft_atoi(line);
-	ft_free(file);
+	line[i] = ' ';
+	line -= 26;
+	free(file);
 	return (retval);
 }
 

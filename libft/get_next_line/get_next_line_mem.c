@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:27:07 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/30 21:49:56 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 22:06:56 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 	out: char**, an array of gnl_fd_max strings, one for each valid fd
 */
 
-char	**gnl_storage(void)
+char	***gnl_storage(void)
 {
 	static char	**file = NULL;
 
 	if (file == NULL)
 		file = ft_calloc(gnl_fd_max(), sizeof(char *));
-	return (file);
+	return (&file);
 }
 
 /*
@@ -47,18 +47,20 @@ char	**gnl_storage(void)
 
 void	gnl_release(void)
 {
-	char	**storage;
+	char	***storage;
 	int		i;
 
 	i = 0;
 	storage = gnl_storage();
 	while (i < gnl_fd_max())
 	{
-		if (storage[i])
-			ft_free(storage[i]);
+		if ((*storage)[i])
+			free((*storage)[i]);
+		(*storage)[i] = NULL;
 		i++;
 	}
-	ft_free(storage);
+	free(*storage);
+	*storage = NULL;
 }
 
 /*
@@ -75,11 +77,14 @@ void	gnl_release(void)
 
 void	gnl_release_fd(int fd)
 {
-	char	**storage;
+	char	***storage;
 
 	if (fd < 0 || fd > (gnl_fd_max() - 1))
 		return ;
 	storage = gnl_storage();
-	if (storage[fd])
-		ft_free(storage[fd]);
+	if ((*storage)[fd])
+	{
+		free((*storage)[fd]);
+		(*storage)[fd] = NULL;
+	}
 }

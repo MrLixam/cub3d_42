@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:13:23 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/13 15:13:53 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:13:39 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_free_arr(char **arr)
 		return ;
 	while (arr[i] != NULL)
 	{
-		ft_free(arr[i]);
+		free(arr[i]);
 		i++;
 	}
-	ft_free(arr);
+	free(arr);
 }

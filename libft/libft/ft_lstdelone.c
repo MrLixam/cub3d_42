@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 19:45:34 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/30 21:52:29 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:12:40 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*))
 	if (lst && del)
 	{
 		del(lst->content);
-		ft_free(lst);
+		free(lst);
 	}
 }

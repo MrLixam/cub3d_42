@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 20:12:17 by lvincent          #+#    #+#             */
-/*   Updated: 2024/01/30 21:49:11 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/13 22:03:43 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	ft_memcpy(rv + ft_strlen(s1), s2, ft_strlen(s2) + 1);
 	if (rv[ft_strlen(s1) + ft_strlen(s2)] != '\0')
 		rv[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	ft_free(s1);
+	free(s1);
 	return (rv);
 }
 
@@ -50,15 +50,15 @@ static char	*read_mini_line(char *save, int fd)
 		b_read = read(fd, tmp, BUFFER_SIZE);
 		if (b_read == -1 || (b_read == 0 && ft_strlen(save) == 0))
 		{
-			ft_free(tmp);
+			free(tmp);
 			if (save)
-				ft_free(save);
+				free(save);
 			return (NULL);
 		}
 		tmp[b_read] = '\0';
 		save = ft_strjoin_gnl(save, tmp);
 	}
-	ft_free(tmp);
+	free(tmp);
 	return (save);
 }
 
@@ -99,7 +99,7 @@ static char	*new_save(char *save)
 		i++;
 	if (ft_strlen(save) - i + 1 <= 1)
 	{
-		ft_free(save);
+		free(save);
 		return (NULL);
 	}
 	rv = malloc(ft_strlen(save) - i + 1);
@@ -110,22 +110,22 @@ static char	*new_save(char *save)
 	while (save[i])
 		rv[j++] = save[i++];
 	rv[j] = '\0';
-	ft_free(save);
+	free(save);
 	return (rv);
 }
 
 char	*get_next_line(int fd)
 {
-	char	**save;
+	char	***save;
 	char	*buffer;
 
 	save = gnl_storage();
 	if (fd < 0 || fd > (gnl_fd_max() - 1) || BUFFER_SIZE < 1)
 		return (NULL);
-	save[fd] = read_mini_line(save[fd], fd);
-	if (!save[fd])
+	(*save)[fd] = read_mini_line((*save)[fd], fd);
+	if (!(*save)[fd])
 		return (NULL);
-	buffer = get_curr_line(save[fd]);
-	save[fd] = new_save(save[fd]);
+	buffer = get_curr_line((*save)[fd]);
+	(*save)[fd] = new_save((*save)[fd]);
 	return (buffer);
 }

@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:52:56 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/10 13:08:11 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/15 21:07:40 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_graphic_data
 	char	*east;
 	t_color	*floor;
 	t_color	*ceiling;
+	char	**map;
 }			t_graphic;
 
 typedef struct s_data

@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:33:52 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/13 20:49:10 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/17 01:10:50 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	index_path(char *line, char **storage)
 		ft_error(NULL, "allocation error");
 	if (!path)
 		return (-1);
-	if (name_parser(path, ".xpm"))
+	if (name_parser(path, ".png"))
 	{
-		ft_error(path, "Invalid file type, use .xpm only");
+		ft_error(path, "Invalid file type, use .png only");
 		free(path);
 		return (-1);
 	}

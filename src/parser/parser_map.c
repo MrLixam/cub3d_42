@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:32:25 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/15 21:20:59 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:00:45 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,31 +64,27 @@ size_t	get_max_length(char **foo, size_t start)
 char **normalize_map(char **file, size_t start)
 {
 	size_t	max_length;
-	size_t	i;
-	size_t	j;
+	size_t	index[2];
 	char	**result;
 
 	max_length = get_max_length(file, start);
 	result = ft_calloc(ft_len_arr(file) - start + 1, sizeof(char *));
 	if (!result)
 		return (NULL);
-	i = 0;
+	index[0] = 0;
 	while (file[start])
 	{
-		result[i] = ft_calloc(max_length + 1, 1);
-		if (!result[i])
+		result[index[0]] = ft_calloc(max_length + 1, 1);
+		if (!result[index[0]])
 		{
 			ft_free_arr(result);
 			return (NULL);
 		}
-		ft_memset(result[i], 32, max_length);
-		j = 0;
-		while (file[start][j])
-		{
-			result[i][j] = file[start][j];
-			j++;
-		}
-		i++;
+		ft_memset(result[index[0]], 32, max_length);
+		index[1] = 0;
+		while (file[start][++index[1] - 1])
+			result[index[0]][index[1] - 1] = file[start][index[1] - 1];
+		index[0]++;
 		start++;
 	}
 	return (result);

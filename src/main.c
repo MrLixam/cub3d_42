@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:39:11 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/15 21:26:01 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:05:04 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ int	main(int argc, char **argv)
 	printf("graphics->west = %s\n", graphics->west);
 	
 	int i = 0;
+	if (graphics->map){
 	while (graphics->map[i])
 	{
 		printf("\"%s\"\n", graphics->map[i]);
 		i++;
+	}
 	}
 	ft_free_arr(test);
 	ft_free_arr(graphics->map);

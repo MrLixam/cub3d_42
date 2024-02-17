@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 00:11:04 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/13 21:00:18 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/17 01:14:46 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ int	base_tests(char *path)
 int	valid_config(char *path)
 {
 	char **file;
-	int		path_ret;
-	int		color_ret;
+	int		ret[2];
 	int 	i;
 
 	if (base_tests(path))
@@ -41,15 +40,16 @@ int	valid_config(char *path)
 		return (1);
 	while (file[i])
 	{
-		path_ret = is_path(file[i]);
-		color_ret = is_color(file[i]);
-		if (path_ret == -1 || color_ret == -1)
+		ret[0] = is_path(file[i]);
+		ret[1] = is_color(file[i]);
+		if (ret[0] == -1 || ret[1] == -1)
 			ft_free_arr(file);
-		if (path_ret == -1 || color_ret == -1)
+		if (ret[0] == -1 || ret[1] == -1)
 			return (1);
-		if (path_ret == 1 && color_ret == 1)
+		if (ret[0] == 1 && ret[1] == 1)
 			break ;
 		i++;
 	}
+	get_graph()->map = normalize_map(file, i);
 	return (0);
 }

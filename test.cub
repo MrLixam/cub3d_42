@@ -1,0 +1,13 @@
+C 255,255,255
+
+F 250,2,0
+
+NO ./path_to_north_texture.png
+SO ./path_to_south_texture.png
+WE ./path_to_west_texture.png
+EA ./path_to_east_texture.png
+
+1
+101
+111111
+111

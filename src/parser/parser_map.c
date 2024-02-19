@@ -6,37 +6,37 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:32:25 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/17 17:00:45 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:17:48 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	check_tile(t_game game, size_t y, size_t x)
+int	check_tile(char **map, size_t y, size_t x)
 {
-	if ((!x || !y) || (x == game.map_width || y == game.map_height))
+	if ((!x || !y) || (map[y][x + 1] == '\0' || map[y + 1] == NULL))
 		return (1);
-	if (is_wspace(game.map[y][x + 1]) || is_wspace(game.map[y][x - 1]))
+	if (is_wspace(map[y][x + 1]) || is_wspace(map[y][x - 1]))
 		return (1);
-	if ((is_wspace(game.map[y + 1][x]) || is_wspace(game.map[y - 1][x])))
+	if ((is_wspace(map[y + 1][x]) || is_wspace(map[y - 1][x])))
 		return (1);
 	return (0);
 }
 
-int	parse_map(t_game game)
+int	parse_map(char **map)
 {
-	size_t	x;
 	size_t	y;
+	size_t	x;
 
 	y = 0;
-	while (y < game.map_height)
+	while (map[y])
 	{
 		x = 0;
-		while (x < game.map_width)
+		while (map[y][x])
 		{
-			if (!is_in_set("01NSWE ", game.map[y][x]))
+			if (!is_in_set("01NSWE ", map[y][x]))
 				return (1);
-			if (is_in_set("0NSWE", game.map[y][x]) && check_tile(game, y, x))
+			if (is_in_set("0NSWE", map[y][x]) && check_tile(map, y, x))
 				return (1);
 			x++;
 		}
@@ -61,7 +61,7 @@ size_t	get_max_length(char **foo, size_t start)
 	return (max_length);
 }
 
-char **normalize_map(char **file, size_t start)
+char	**normalize_map(char **file, size_t start)
 {
 	size_t	max_length;
 	size_t	index[2];

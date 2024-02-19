@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:25:21 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/15 21:23:11 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:48:34 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,12 @@ void	reset_graph(void)
 		free(graphics->west);
 	if (graphics->east)
 		free(graphics->east);
+	if (graphics->map)
+		ft_free_arr(graphics->map);
 	free(graphics->floor);
 	free(graphics->ceiling);
+	graphics->floor = NULL;
+	graphics->ceiling = NULL;
 }
 
 void	init_graph(void)

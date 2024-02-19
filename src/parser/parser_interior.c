@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 00:11:04 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/17 01:14:46 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:43:19 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int	valid_config(char *path)
 		i++;
 	}
 	get_graph()->map = normalize_map(file, i);
+	ft_free_arr(file);
 	return (0);
 }

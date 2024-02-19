@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   parser_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 06:02:30 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/19 20:21:09 by lvincent         ###   ########.fr       */
+/*   Created: 2024/02/19 20:32:59 by lvincent          #+#    #+#             */
+/*   Updated: 2024/02/19 20:35:10 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#include "../../includes/cub3d.h"
 
-int		name_parser(char *name, char *ext);
-int		parse_extern(char *name, char *ext);
-int		not_valid_file(char *name);
-int		is_path(char *line);
-int		is_color(char *line);
-int		valid_config(char *path);
-char	**normalize_map(char **file, size_t start);
-size_t	get_max_length(char **foo, size_t start);
-int		parse_map(char **map);
-
-#endif
+int	parser(char *path)
+{
+	if (parse_extern(path, ".cub"))
+		return (1);
+	init_graph();
+	if (valid_config(path))
+	{
+		reset_graph();
+		return (1);
+	}
+	if (get_graph()->map == NULL)
+	{
+		ft_error(path, "no map in the configuration");
+		reset_graph();
+		return (1);
+	}
+	if (parse_map(get_graph()->map))
+	{
+		reset_graph();
+		return (1);
+	}
+	return (0);
+}

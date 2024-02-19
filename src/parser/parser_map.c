@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:32:25 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/19 20:17:48 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:31:27 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,15 @@ int	parse_map(char **map)
 		while (map[y][x])
 		{
 			if (!is_in_set("01NSWE ", map[y][x]))
+			{
+				ft_error(NULL, "invalid character in the map, use NSWE01");
 				return (1);
+			}
 			if (is_in_set("0NSWE", map[y][x]) && check_tile(map, y, x))
+			{
+				ft_error(NULL, "the map is not surrounded by walls");
 				return (1);
+			}
 			x++;
 		}
 		y++;

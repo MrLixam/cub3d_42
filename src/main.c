@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:39:11 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/19 20:16:11 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:32:22 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ int	parser(char *path)
 		return (1);
 	}
 	if (get_graph()->map == NULL)
+	{
+		ft_error(path, "no map in the configuration");
 		reset_graph();
-	if (get_graph()->map == NULL)
 		return (1);
+	}
 	if (parse_map(get_graph()->map))
 	{
 		reset_graph();

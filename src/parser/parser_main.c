@@ -6,13 +6,13 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:32:59 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/19 20:36:21 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/21 00:29:33 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	parser(char *path)
+static int	parser_file(char *path)
 {
 	if (parse_extern(path, ".cub"))
 		return (1);
@@ -34,4 +34,23 @@ int	parser(char *path)
 		return (1);
 	}
 	return (0);
+}
+
+void	parser(char *path)
+{
+	int	error_val;
+
+	error_val = parser_file(path);
+	if (error_val)
+		gnl_release();
+	if (error_val)
+		exit(1);
+	error_val = check_images();
+	if (error_val)
+	{
+		gnl_release();
+		reset_graph();
+		exit(1);
+	}
+	return ;
 }

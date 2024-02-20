@@ -6,14 +6,14 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:04:41 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/13 19:52:40 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/21 00:12:23 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-#include "structs.h"
+# include "structs.h"
 
 void		ft_error(char *target, char *message);
 void		ft_perror(char *prefix);

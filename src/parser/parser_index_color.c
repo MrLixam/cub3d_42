@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_color.c                                     :+:      :+:    :+:   */
+/*   parser_index_color.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:33:47 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/13 20:44:53 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/21 00:14:27 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	set_color(t_color *color, int index, int value)
 
 static int	color_check(char **result)
 {
-	int i;
+	int	i;
 	int	val;
 
 	if (ft_len_arr(result) != 3)

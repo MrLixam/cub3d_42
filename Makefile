@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 05:51:01 by lvincent          #+#    #+#              #
-#    Updated: 2024/02/20 08:24:44 by lvincent         ###   ########.fr        #
+#    Updated: 2024/02/21 00:43:57 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,6 @@ re: fclean all
 debug: FLAGS += -g
 debug: dependencies $(OBJ)
 	@$(CC) $(FLAGS) $(OBJ) -L./libft -lft ./MacroLibX/libmlx.so -lSDL2 -o $(NAME)
-	@echo -e "\n$(GREEN)[executable created]$(RESET)"
+	@echo -e "$(GREEN)[Executable created]$(RESET)"
 
 .PHONY: all clean fclean re

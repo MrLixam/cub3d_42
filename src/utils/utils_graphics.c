@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 08:23:31 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/20 08:28:18 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/21 00:16:28 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	reset_graph(void)
 	graphics->ceiling = NULL;
 }
 
-static void	init_colors()
+static void	init_colors(void)
 {
-	t_graphic *graphics;
+	t_graphic	*graphics;
 
 	graphics = get_graph();
 	graphics->ceiling->red = 255;

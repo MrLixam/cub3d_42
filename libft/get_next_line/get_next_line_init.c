@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 02:34:31 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/13 22:00:47 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/21 00:17:13 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	init_max_fd(void)
 		return (1024);
 	i = 0;
 	line += 26;
-	while(ft_isdigit(line[i]))
+	while (ft_isdigit(line[i]))
 		i++;
 	line[i] = '\0';
 	retval = ft_atoi(line);

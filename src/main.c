@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:39:11 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/20 19:20:09 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/21 00:44:30 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //main temporaire de test, fait un autre main et met celui là en commentaire si t'a besoin de faire des tests pour l'exec please :)
 
-int	main(int argc, char **argv)
+/*int	main(int argc, char **argv)
 {
 	t_graphic	*graphics;
 
@@ -50,5 +50,13 @@ int	main(int argc, char **argv)
 	}
 	reset_graph();
 	gnl_release();
+	return (0);
+} */
+
+int	main(int argc, char **argv)
+{
+	if (argc != 2)
+		return (1);
+	parser(argv[1]);
 	return (0);
 }

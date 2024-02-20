@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 05:19:20 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/20 20:05:27 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/21 00:15:22 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void	check_error(int fd, int value, char *path)
 
 static int	check_image(char *path)
 {
-	int					tmp[2];
-	unsigned char		buffer[8];
- 
+	int				tmp[2];
+	unsigned char	buffer[8];
+
 	if (path == NULL)
 		return (0);
 	tmp[0] = open(path, O_RDONLY);
@@ -48,7 +48,7 @@ static int	check_image(char *path)
 	return (0);
 }
 
-int	check_images()
+int	check_images(void)
 {
 	t_graphic	*graphics;
 

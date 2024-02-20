@@ -6,97 +6,60 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 05:19:20 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/20 05:58:40 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:05:27 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static int	check_image_north(void *mlx)
+static void	check_error(int fd, int value, char *path)
 {
-	t_graphic	*graphics;
-	void		*img;
-	int			tmp[2];
+	close(fd);
+	if (value == -1)
+		ft_perror(path);
+	if (value != 8 && value != -1)
+		ft_error(path, "error getting file signature");
+	if (value == 8)
+		ft_error(path, "invalid file signature");
+}
 
-	graphics = get_graph();
-	if (graphics->north == NULL)
+static int	check_image(char *path)
+{
+	int					tmp[2];
+	unsigned char		buffer[8];
+ 
+	if (path == NULL)
 		return (0);
-	img = mlx_png_file_to_image(mlx, graphics->north, &tmp[0], &tmp[1]);
-	if (img == NULL)
+	tmp[0] = open(path, O_RDONLY);
+	if (tmp[0] == -1)
+		ft_perror(path);
+	if (tmp[0] == -1)
+		return (1);
+	tmp[1] = read(tmp[0], buffer, 8);
+	if (tmp[1] != 8)
+		check_error(tmp[0], tmp[1], path);
+	if (tmp[1] != 8)
+		return (1);
+	if (ft_memcmp(buffer, "\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", 8) != 0)
 	{
-		ft_error(graphics->north, "can't get image");
+		check_error(tmp[0], tmp[1], path);
 		return (1);
 	}
-	mlx_destroy_image(mlx, img);
 	return (0);
 }
 
-static int	check_image_south(void *mlx)
+int	check_images()
 {
 	t_graphic	*graphics;
-	void		*img;
-	int			tmp[2];
 
 	graphics = get_graph();
-	if (graphics->south == NULL)
-		return (0);
-	img = mlx_png_file_to_image(mlx, graphics->south, &tmp[0], &tmp[1]);
-	if (img == NULL)
-	{
-		ft_error(graphics->south, "can't get image");
+	if (check_image(graphics->north))
 		return (1);
-	}
-	mlx_destroy_image(mlx, img);
-	return (0);
-}
-
-static int	check_image_west(void *mlx)
-{
-	t_graphic	*graphics;
-	void		*img;
-	int			tmp[2];
-
-	graphics = get_graph();
-	if (graphics->west == NULL)
-		return (0);
-	img = mlx_png_file_to_image(mlx, graphics->west, &tmp[0], &tmp[1]);
-	if (img == NULL)
-	{
-		ft_error(graphics->west, "can't get image");
+	if (check_image(graphics->south))
 		return (1);
-	}
-	mlx_destroy_image(mlx, img);
-	return (0);
-}
-
-static int	check_image_east(void *mlx)
-{
-	t_graphic	*graphics;
-	void		*img;
-	int			tmp[2];
-	
-	graphics = get_graph();
-	if (graphics->east == NULL)
-		return (0);
-	img = mlx_png_file_to_image(mlx, graphics->east, &tmp[0], &tmp[1]);
-	if (img == NULL)
-	{
-		ft_error(graphics->east, "can't get image");
+	if (check_image(graphics->west))
 		return (1);
-	}
-	mlx_destroy_image(mlx, img);
-	return (0);
-}
-
-int	check_images(void *mlx)
-{
-	if (check_image_north(mlx))
-		return (1);
-	if (check_image_south(mlx))
-		return (1);
-	if (check_image_west(mlx))
-		return (1);
-	if (check_image_east(mlx))
+	if (check_image(graphics->east))
 		return (1);
 	return (0);
 }

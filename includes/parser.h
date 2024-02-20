@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:02:30 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/20 05:53:04 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:19:58 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ size_t	get_max_length(char **foo, size_t start);
 int		parse_map(char **map);
 
 int		parser(char *path);
-int		check_images(void *mlx);
+int		check_images();
 
 #endif

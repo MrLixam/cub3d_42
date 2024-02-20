@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 05:51:01 by lvincent          #+#    #+#              #
-#    Updated: 2024/02/20 06:45:58 by lvincent         ###   ########.fr        #
+#    Updated: 2024/02/20 08:24:44 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC 	=	src/main.c \
 			src/parser/parser_interior.c src/parser/parser_index_color.c src/parser/parser_main.c\
 			src/parser/parser_exterior.c src/parser/parser_index_textures.c src/parser/parser_map.c\
 			src/parser/parser_check_textures.c\
-			src/utils/utils_misc.c src/utils/utils_error.c
+			src/utils/utils_misc.c src/utils/utils_error.c src/utils/utils_graphics.c
 
 OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 

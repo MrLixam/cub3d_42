@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:25:21 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/19 18:48:34 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:18:16 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,45 +47,4 @@ char	*ft_strinsert(char *base, char *ins, size_t pos)
 	while (base[index[0]])
 		new[index[1]++] = base[index[0]++];
 	return (new);
-}
-
-t_graphic	*get_graph(void)
-{
-	static t_graphic	graphics;
-
-	return (&graphics);
-}
-
-void	reset_graph(void)
-{
-	t_graphic	*graphics;
-
-	graphics = get_graph();
-	if (graphics->north)
-		free(graphics->north);
-	if (graphics->south)
-		free(graphics->south);
-	if (graphics->west)
-		free(graphics->west);
-	if (graphics->east)
-		free(graphics->east);
-	if (graphics->map)
-		ft_free_arr(graphics->map);
-	free(graphics->floor);
-	free(graphics->ceiling);
-	graphics->floor = NULL;
-	graphics->ceiling = NULL;
-}
-
-void	init_graph(void)
-{
-	t_graphic	*graphics;
-
-	graphics = get_graph();
-	graphics->north = NULL;
-	graphics->south = NULL;
-	graphics->west = NULL;
-	graphics->east = NULL;
-	graphics->floor = ft_calloc(1, sizeof(t_color));
-	graphics->ceiling = ft_calloc(1, sizeof(t_color));
 }

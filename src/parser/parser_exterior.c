@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 08:43:10 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/10 12:48:57 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:46:40 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,15 @@ int	not_valid_file(char *name)
 	if (fd != -1)
 	{
 		close(fd);
+		ft_error(name, "is a directory");
 		return (1);
 	}
 	fd = open(name, O_RDONLY);
 	if (fd == -1)
+	{
+		ft_perror(name);
 		return (1);
+	}
 	close(fd);
 	return (0);
 }
@@ -48,8 +52,6 @@ int	parse_extern(char *name, char *ext)
 	char	*error;
 
 	if (not_valid_file(name) == 1)
-		ft_perror(name);
-	if (not_valid_file(name))
 		return (1);
 	error = ft_strinsert(
 			"invalid file name: must be a  and name musn't be empty",

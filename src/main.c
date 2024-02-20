@@ -6,37 +6,13 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:39:11 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/19 20:32:22 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:43:21 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 //main temporaire de test, fait un autre main et met celui là en commentaire si t'a besoin de faire des tests pour l'exec please :)
-
-int	parser(char *path)
-{
-	if (parse_extern(path, ".cub"))
-		return (1);
-	init_graph();
-	if (valid_config(path))
-	{
-		reset_graph();
-		return (1);
-	}
-	if (get_graph()->map == NULL)
-	{
-		ft_error(path, "no map in the configuration");
-		reset_graph();
-		return (1);
-	}
-	if (parse_map(get_graph()->map))
-	{
-		reset_graph();
-		return (1);
-	}
-	return (0);
-}
 
 int	main(int argc, char **argv)
 {
@@ -46,8 +22,10 @@ int	main(int argc, char **argv)
 	graphics = get_graph();
 
 	if (parser(argv[1]))
+	{
+		gnl_release();
 		return (1);
-	
+	}
 	printf("graphics->ceiling = %d %d %d\n", graphics->ceiling->red, graphics->ceiling->green, graphics->ceiling->blue);
 	printf("graphics->floor = %d %d %d\n", graphics->floor->red, graphics->floor->green, graphics->floor->blue);
 	printf("graphics->north = %s\n", graphics->north);

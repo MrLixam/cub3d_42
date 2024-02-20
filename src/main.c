@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:39:11 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/19 20:43:21 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/20 06:41:31 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 int	main(int argc, char **argv)
 {
 	t_graphic	*graphics;
+	void		*mlx;
 
 	(void)argc;
 	graphics = get_graph();
@@ -24,6 +25,14 @@ int	main(int argc, char **argv)
 	if (parser(argv[1]))
 	{
 		gnl_release();
+		return (1);
+	}
+	mlx = mlx_init();
+	if (check_images(mlx))
+	{
+		mlx_destroy_display(mlx);
+		gnl_release();
+		reset_graph();
 		return (1);
 	}
 	printf("graphics->ceiling = %d %d %d\n", graphics->ceiling->red, graphics->ceiling->green, graphics->ceiling->blue);
@@ -42,6 +51,7 @@ int	main(int argc, char **argv)
 			i++;
 		}
 	}
+	mlx_destroy_display(mlx);
 	reset_graph();
 	gnl_release();
 	return (0);

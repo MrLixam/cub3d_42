@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 05:51:01 by lvincent          #+#    #+#              #
-#    Updated: 2024/02/20 06:35:26 by lvincent         ###   ########.fr        #
+#    Updated: 2024/02/20 06:45:58 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,10 +70,8 @@ re_mlx: fclean_mlx all
 re: fclean all
 
 debug: FLAGS += -g
-debug: $(OBJ)
-	@make debug -s --no-print-directory -C libft
-	#@make -s --no-print-directory -C MacroLibX
-	@$(CC) $(FLAGS) $(OBJ) -L./libft -lft -o $(NAME)
+debug: dependencies $(OBJ)
+	@$(CC) $(FLAGS) $(OBJ) -L./libft -lft ./MacroLibX/libmlx.so -lSDL2 -o $(NAME)
 	@echo -e "\n$(GREEN)[executable created]$(RESET)"
 
 .PHONY: all clean fclean re

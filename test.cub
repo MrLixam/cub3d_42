@@ -4,10 +4,14 @@ F 250,2,0
 
 NO ./path_to_north_texture.png
 SO ./path_to_south_texture.png
-WE ./path_to_west_texture.png
+WE ./fake_path.png
 EA ./path_to_east_texture.png
 
-1
-101
-111111
-111
+1111111
+1000001
+1000001
+1110001
+1000011
+1000001
+1000001
+1111111

@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 00:11:04 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 04:10:21 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 07:10:44 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int	base_tests(char **file, char *path)
 {
-	if (file[0] == NULL)
+	if (!file || file[0] == NULL)
 	{
 		ft_error(path, "file is empty");
-		ft_free_arr(file);
+		if (file)
+			ft_free_arr(file);
 		return (1);
 	}
 	return (0);
@@ -31,7 +32,7 @@ int	valid_config(char *path)
 
 	i = 0;
 	file = gnl_full_file(path);
-	if (!file || base_tests(file, path))
+	if (base_tests(file, path))
 		return (1);
 	while (file[i])
 	{

@@ -6,13 +6,13 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:32:25 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 02:51:51 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 05:18:34 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	check_tile(char **map, size_t y, size_t x)
+static int	check_tile(char **map, size_t y, size_t x)
 {
 	if ((!x || !y) || (map[y][x + 1] == '\0' || map[y + 1] == NULL))
 		return (1);
@@ -23,32 +23,38 @@ int	check_tile(char **map, size_t y, size_t x)
 	return (0);
 }
 
+static int check_wall(char **map, size_t y, size_t x)
+{
+	return (is_in_set("0NSWE", map[y][x]) && check_tile(map, y, x));
+}
+
 int	parse_map(char **map)
 {
-	size_t	y;
-	size_t	x;
+	size_t	yx[2];
+	int		found;
 
-	y = 0;
-	while (map[y])
+	yx[0] = 0;
+	found = 0;
+	while (map[++yx[0] - 1])
 	{
-		x = 0;
-		while (map[y][x])
+		yx[1] = 0;
+		while (map[yx[0] - 1][++yx[1] - 1])
 		{
-			if (!is_in_set("01NSWE ", map[y][x]))
-			{
+			if (!is_in_set("01NSWE ", map[yx[0] - 1][yx[1] - 1]))
 				ft_error(NULL, "invalid character in the map, use NSWE01");
-				return (1);
-			}
-			if (is_in_set("0NSWE", map[y][x]) && check_tile(map, y, x))
-			{
+			else if (check_wall(map, yx[0] - 1, yx[1] - 1))
 				ft_error(NULL, "the map is not surrounded by walls");
+			if ((!is_in_set("01NSWE ", map[yx[0] - 1][yx[1] - 1])) ||
+				(is_in_set("0NSWE", map[yx[0] - 1][yx[1] - 1]) &&
+				check_tile(map, yx[0] - 1, yx[1] - 1)))
 				return (1);
-			}
-			x++;
+			if (is_in_set("NSWE", map[yx[0] - 1][yx[0] - 1]))
+				found = 1;
 		}
-		y++;
 	}
-	return (0);
+	if (!found)
+		ft_error(NULL, "the map has no player spawn");
+	return (!found);
 }
 
 size_t	get_max_length(char **foo, size_t start)

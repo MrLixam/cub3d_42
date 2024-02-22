@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:52:56 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/15 21:07:40 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:21:25 by r                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,27 @@ typedef struct s_playable_character
 {
 	size_t	x;
 	size_t	y;
-	int		move;
-	int		collected;
-	char	footprint;
+	int		X;
+	int		Y;
+	float	view;
 }			t_pc;
+
+typedef struct s_raycast_line
+{
+	float	ray;
+	float	ray_dist_x;
+	float	ray_dist_y;
+	float	side_dist_x;
+	float	side_dist_y;
+}			t_line;
+
+typedef struct s_raycast
+{
+	float	ray;
+	t_line	*horizontal;
+	t_line	*vertical;
+	float	dist;
+}			t_ray;
 
 typedef struct s_game
 {
@@ -75,7 +92,7 @@ typedef struct s_game
 	t_img		frame;
 	t_txt		texture;
 	t_pc		player;
-	int			collectible;
+	t_ray		raycast;
 }			t_game;
 
 #endif

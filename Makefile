@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 05:51:01 by lvincent          #+#    #+#              #
-#    Updated: 2024/02/22 05:37:11 by lvincent         ###   ########.fr        #
+#    Updated: 2024/02/22 16:30:54 by r                ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRC 	=	src/main.c \
 			src/parser/parser_interior.c src/parser/parser_index_color.c src/parser/parser_main.c\
 			src/parser/parser_exterior.c src/parser/parser_index_textures.c src/parser/parser_map.c\
 			src/parser/parser_check_textures.c\
-			src/utils/utils_misc.c src/utils/utils_error.c src/utils/utils_graphics.c
+			src/utils/utils_misc.c src/utils/utils_error.c src/utils/utils_graphics.c\
+			src/render/mlx_fonction.c src/render/mlx_hook.c src/render/raycaster.c\
 
 OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 
@@ -45,7 +46,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(FLAGS) -o $@ -c $<
 
 $(NAME): $(MLX) $(LIBFT) $(OBJ)
-	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(MLX) -lSDL2 -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(MLX) -lSDL2 -lm -o $(NAME)
 	@echo -e "$(GREEN)[Executable created]"
 
 $(LIBFT):
@@ -78,7 +79,7 @@ re: fclean all
 debug: FLAGS += -g -pg
 debug: $(MLX) $(OBJ)
 	@make debug --no-print-directory -C libft -j
-	@$(CC) $(FLAGS) $(OBJ) -L./libft -lft ./MacroLibX/libmlx.so -lSDL2 -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) -L./libft -lft ./MacroLibX/libmlx.so -lSDL2 -lm -o $(NAME)
 	@echo -e "$(GREEN)[Executable created]$(RESET)"
 
 .PHONY: all clean fclean re debug

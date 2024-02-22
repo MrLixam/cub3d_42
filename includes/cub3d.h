@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:02:09 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/11 18:37:15 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/21 10:27:30 by r                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@
 # include <sys/stat.h>
 # include <errno.h>
 # include <stdio.h>
+# include <math.h>
 
 #endif

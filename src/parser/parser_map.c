@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:32:25 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 05:18:34 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 05:38:27 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_tile(char **map, size_t y, size_t x)
 	return (0);
 }
 
-static int check_wall(char **map, size_t y, size_t x)
+static int	check_wall(char **map, size_t y, size_t x)
 {
 	return (is_in_set("0NSWE", map[y][x]) && check_tile(map, y, x));
 }

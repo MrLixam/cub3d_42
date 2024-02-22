@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 05:51:01 by lvincent          #+#    #+#              #
-#    Updated: 2024/02/21 00:43:57 by lvincent         ###   ########.fr        #
+#    Updated: 2024/02/22 04:39:00 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,12 @@ RESET = \033[0m
 
 CC 		=	clang
 
-FLAGS 	=	-Wall -Wextra -Werror
+FLAGS 	=	-Werror -Wall -Wextra
 NAME 	=	cub3d
+
+LIBFT = libft/libft.a
+
+MLX = MacroLibX/libmlx.so
 
 SRC_DIR = src
 
@@ -40,13 +44,15 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo -e "$(GREEN)CUB3D [Compiling ...]$(RESET) $<"
 	@$(CC) $(FLAGS) -o $@ -c $<
 
-$(NAME): dependencies $(OBJ)
-	@$(CC) $(FLAGS) $(OBJ) -L./libft -lft ./MacroLibX/libmlx.so -lSDL2 -o $(NAME)
+$(NAME): $(MLX) $(LIBFT) $(OBJ)
+	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(MLX) -lSDL2 -o $(NAME)
 	@echo -e "$(GREEN)[Executable created]"
 
-dependencies:
-	@make -s --no-print-directory -C libft
-	@make -s --no-print-directory -C MacroLibX
+$(LIBFT):
+	@make -s --no-print-directory -C libft -j
+
+$(MLX):
+	@make -s --no-print-directory -C MacroLibX -j
 
 clean:
 	@make fclean --no-print-directory -C libft
@@ -61,7 +67,7 @@ clean_mlx:
 	@make fclean --no-print-directory -C MacroLibX
 	@rm -rf $(OBJ)
 
-fclean_mlx:
+fclean_mlx: clean_mlx
 	@rm -rf $(NAME)
 	@echo -e "$(RED)[Programe deleted]$(RESET)"
 
@@ -69,8 +75,9 @@ re_mlx: fclean_mlx all
 
 re: fclean all
 
-debug: FLAGS += -g
-debug: dependencies $(OBJ)
+debug: FLAGS += -g -pg
+debug: $(MLX) $(OBJ)
+	@make debug --no-print-directory -C libft -j
 	@$(CC) $(FLAGS) $(OBJ) -L./libft -lft ./MacroLibX/libmlx.so -lSDL2 -o $(NAME)
 	@echo -e "$(GREEN)[Executable created]$(RESET)"
 

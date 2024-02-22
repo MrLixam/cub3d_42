@@ -6,11 +6,63 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:03:14 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/13 20:12:40 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 04:43:46 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+
+/*
+	small funtion to reset a given fd
+*/
+
+static void	gnl_reset_fd(int fd)
+{
+	if (fd < 0 || fd >= gnl_fd_max())
+		return ;
+	close(fd);
+	gnl_release_fd(fd);
+}
+
+/*
+	Copies a whole file as a string array (char **) 
+	removing all newline characters
+
+	in: char* corresponding to the path to a file
+	out : char ** the file with newline characters removed
+
+	error cases: returns NULL if it cannot open the file,
+	or if allocation somehow fails
+*/
+
+char	**gnl_full_file(char *path)
+{
+	char	**result;
+	char	buffer[8193];
+	char	*buffer2;
+	int		fd_read[2];
+
+	fd_read[0] = open(path, O_RDONLY);
+	if (fd_read[0] == -1)
+		return (NULL);
+	buffer2 = NULL;
+	while (1)
+	{
+		fd_read[1] = read(fd_read[0], buffer, 8192);
+		if (fd_read[1] == 0 || fd_read[1] == -1)
+			break ;
+		buffer[fd_read[1]] = 0;
+		buffer2 = ft_strjoin_gnl(buffer2, buffer);
+		if (buffer2 == NULL)
+			return (NULL);
+	}
+	result = NULL;
+	gnl_reset_fd(fd_read[0]);
+	if (fd_read[1] != -1)
+		result = ft_split(buffer2, '\n');
+	free(buffer2);
+	return (result);
+}
 
 /*
 	in the name, counts the number of lines in a given file pointed by the file
@@ -50,43 +102,4 @@ size_t	gnl_count_lines(char *path)
 	gnl_release_fd(fd);
 	close(fd);
 	return (i);
-}
-
-/*
-	Copies a whole file as a string array (char **) 
-	removing all newline characters
-
-	in: char* corresponding to the path to a file
-	out : char ** the file with newline characters removed
-
-	error cases: returns NULL if it cannot open the file,
-	or if allocation somehow fails
-*/
-
-char	**gnl_full_file(char *path)
-{
-	char	**result;
-	char	*buffer;
-	char	*buffer2;
-	int		fd;
-
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		return (NULL);
-	buffer2 = NULL;
-	while (1)
-	{
-		buffer = get_next_line(fd);
-		if (buffer == NULL)
-			break ;
-		buffer2 = ft_strjoin_gnl(buffer2, buffer);
-		if (buffer2 == NULL)
-			return (NULL);
-		free(buffer);
-	}
-	result = ft_split(buffer2, '\n');
-	free(buffer2);
-	gnl_release_fd(fd);
-	close(fd);
-	return (result);
 }

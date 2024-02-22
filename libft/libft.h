@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 22:09:29 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/13 21:41:21 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 03:04:52 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdarg.h>
 # include <fcntl.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 8
+#  define BUFFER_SIZE 256
 # endif
 
 typedef struct s_list

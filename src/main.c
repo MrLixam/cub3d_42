@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:39:11 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/21 00:44:30 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 02:58:11 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,11 @@
 
 int	main(int argc, char **argv)
 {
+	printf("start main\n");
 	if (argc != 2)
 		return (1);
 	parser(argv[1]);
+	gnl_release();
+	reset_graph();
 	return (0);
 }

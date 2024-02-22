@@ -6,21 +6,18 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 00:11:04 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/21 00:13:59 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 04:10:21 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	base_tests(char *path)
+int	base_tests(char **file, char *path)
 {
-	errno = 0;
-	if (gnl_count_lines(path) == 0)
+	if (file[0] == NULL)
 	{
-		if (errno)
-			ft_perror(path);
-		else
-			ft_error(path, "file is empty");
+		ft_error(path, "file is empty");
+		ft_free_arr(file);
 		return (1);
 	}
 	return (0);
@@ -32,11 +29,9 @@ int	valid_config(char *path)
 	int		ret[2];
 	int		i;
 
-	if (base_tests(path))
-		return (1);
 	i = 0;
 	file = gnl_full_file(path);
-	if (!file)
+	if (!file || base_tests(file, path))
 		return (1);
 	while (file[i])
 	{

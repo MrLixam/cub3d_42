@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 20:12:17 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/13 22:03:43 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 04:43:57 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,28 @@
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	char	*rv;
+	int		len[2];
 
+	len[0] = ft_strlen(s1);
+	len[1] = ft_strlen(s2);
 	if (!s1)
 	{
-		rv = malloc(ft_strlen(s2) + 1);
+		rv = malloc(len[1] + 1);
 		if (!rv)
 			return (NULL);
-		rv[ft_strlen(s2)] = '\0';
-		ft_memcpy(rv, s2, ft_strlen(s2));
+		rv[len[1]] = '\0';
+		ft_memcpy(rv, s2, len[1]);
 		return (rv);
 	}
 	if (!s2)
 		return (s1);
-	rv = malloc(1 + ft_strlen(s1) + ft_strlen(s2));
+	rv = malloc(1 + len[0] + len[1]);
 	if (!rv)
 		return (NULL);
-	ft_memcpy(rv, s1, ft_strlen(s1));
-	ft_memcpy(rv + ft_strlen(s1), s2, ft_strlen(s2) + 1);
-	if (rv[ft_strlen(s1) + ft_strlen(s2)] != '\0')
-		rv[ft_strlen(s1) + ft_strlen(s2)] = '\0';
+	ft_memcpy(rv, s1, len[0]);
+	ft_memcpy(rv + len[0], s2, len[1] + 1);
+	if (rv[len[0] + len[1]] != '\0')
+		rv[len[0] + len[1]] = '\0';
 	free(s1);
 	return (rv);
 }

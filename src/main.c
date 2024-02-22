@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:39:11 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 07:01:02 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 08:41:21 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,14 @@
 
 int	main(int argc, char **argv)
 {
+	if (argc == 1)
+		ft_error(NULL, "no file given");
+	if (argc > 2)
+		ft_error(NULL, "too many arguments");
 	if (argc != 2)
 		return (1);
 	parser(argv[1]);
-	gnl_release();
 	reset_graph();
+	gnl_release();
 	return (0);
 }

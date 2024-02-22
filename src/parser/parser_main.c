@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:32:59 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 04:11:36 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 08:38:46 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,8 @@ static int	parser_file(char *path)
 	if (parse_extern(path, ".cub"))
 		return (1);
 	init_graph();
-	if (valid_config(path))
+	if (valid_config(path) || get_graph()->map == NULL)
 	{
-		reset_graph();
-		return (1);
-	}
-	if (get_graph()->map == NULL)
-	{
-		ft_error(path, "no map in the configuration");
 		reset_graph();
 		return (1);
 	}

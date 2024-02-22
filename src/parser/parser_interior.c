@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 00:11:04 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 07:10:44 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 08:37:36 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,25 @@ int	base_tests(char **file, char *path)
 		return (1);
 	}
 	return (0);
+}
+
+static int	no_empty_line(char **file, int i)
+{
+	if (!file[i])
+	{
+		ft_error(NULL, "there is no map");
+		return (0);
+	}
+	while (file[i])
+	{
+		if (file[i][0] == 0)
+		{
+			ft_error(NULL, "there are empty lines in map definition");
+			return (0);
+		}
+		i++;
+	}
+	return (1);
 }
 
 int	valid_config(char *path)
@@ -46,7 +65,8 @@ int	valid_config(char *path)
 			break ;
 		i++;
 	}
-	get_graph()->map = normalize_map(file, i);
+	if (no_empty_line(file, i))
+		get_graph()->map = normalize_map(file, i);
 	ft_free_arr(file);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 22:09:29 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 03:04:52 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 08:19:57 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ char	***gnl_storage(void);
 void	gnl_release(void);
 void	gnl_release_fd(int fd);
 size_t	gnl_count_lines(char *path);
+char	*gnl_full_file_str(char *path);
 char	**gnl_full_file(char *path);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 int		gnl_fd_max(void);

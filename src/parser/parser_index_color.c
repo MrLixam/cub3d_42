@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:33:47 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 04:45:32 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 08:32:12 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ int	is_color(char *line)
 	int			rv;
 	t_graphic	*graphics;
 
+	if (!line)
+		return (1);
+	if (line[0] == 0)
+		return (0);
 	rv = 0;
 	graphics = get_graph();
 	if (ft_strlen(line) < 2)

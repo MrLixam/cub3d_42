@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 15:46:24 by lvincent          #+#    #+#              #
-#    Updated: 2024/02/22 05:37:14 by lvincent         ###   ########.fr        #
+#    Updated: 2024/02/22 08:19:20 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ RESET = \033[0m
 
 #Sources relative to get_next_line
 SRC +=	get_next_line/get_next_line.c get_next_line/get_next_line_init.c \
-		get_next_line/get_next_line_mem.c get_next_line/get_next_line_misc.c
+		get_next_line/get_next_line_mem.c get_next_line/get_next_line_misc.c\
+		get_next_line/gnl_full_file.c
 
 #Sources relative to ft_printf
 SRC	+=	ft_printf/ft_printf.c ft_printf/ft_printf_utils1.c

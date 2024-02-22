@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:32:25 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 06:36:56 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:57:28 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ static int	parse_map_loop(char **map, size_t y, size_t x, int *found)
 	if (!retval[0] || ((retval[0] && retval[2]) && retval[1]))
 		return (1);
 	if (retval[2] && map[y][x] != '0')
-		*found = 1;
+	{
+		*found += 1;
+		get_graph()->spawn_x = x;
+		get_graph()->spawn_y = y;
+	}
 	return (0);
 }
 
@@ -64,6 +68,11 @@ int	parse_map(char **map)
 	}
 	if (!found)
 		ft_error(NULL, "the map has no player spawn");
+	if (found > 1)
+	{
+		ft_error(NULL, "the map has multiple player spawns");
+		return (1);
+	}
 	return (!found);
 }
 

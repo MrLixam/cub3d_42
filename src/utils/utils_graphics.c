@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 08:23:31 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/21 00:16:28 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:53:38 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ void	reset_graph(void)
 		free(graphics->east);
 	if (graphics->map)
 		ft_free_arr(graphics->map);
-	free(graphics->floor);
-	free(graphics->ceiling);
+	if (graphics->floor)
+		free(graphics->floor);
+	if (graphics->ceiling)
+		free(graphics->ceiling);
 	graphics->floor = NULL;
 	graphics->ceiling = NULL;
 }
@@ -53,6 +55,18 @@ static void	init_colors(void)
 	graphics->floor->blue = 0;
 }
 
+int	check_graph(void)
+{
+	t_graphic	*graphics;
+
+	graphics = get_graph();
+	if (graphics->floor == NULL)
+		return (1);
+	if (graphics->ceiling == NULL)
+		return (1);
+	return (0);
+}
+
 void	init_graph(void)
 {
 	t_graphic	*graphics;
@@ -64,5 +78,7 @@ void	init_graph(void)
 	graphics->east = NULL;
 	graphics->floor = ft_calloc(1, sizeof(t_color));
 	graphics->ceiling = ft_calloc(1, sizeof(t_color));
+	if (check_graph())
+		return ;
 	init_colors();
 }

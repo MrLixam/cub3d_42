@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:52:56 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/21 19:21:25 by r                ###   ########.fr       */
+/*   Updated: 2024/02/22 17:54:53 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ typedef struct s_graphic_data
 	t_color	*floor;
 	t_color	*ceiling;
 	char	**map;
+	size_t	spawn_x;
+	size_t	spawn_y;
 }			t_graphic;
-
+/*
 typedef struct s_data
 {
 	char	*addr;
@@ -40,20 +42,23 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 }			t_data;
+*/
 
 typedef struct s_img
 {
 	void	*img;
-	t_data	data;
 	int		width;
 	int		height;
 }			t_img;
 
 typedef struct s_texture
 {
-	t_img	tile;
-	t_img	player;
-	t_img	collectible;
+	t_img	north;
+	t_img	south;
+	t_img	west;
+	t_img	east;
+	t_color	*ceiling;
+	t_color	*floor;
 }			t_txt;
 
 typedef struct s_playable_character

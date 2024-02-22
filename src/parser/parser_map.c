@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:32:25 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 05:38:27 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 06:36:56 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,34 +23,44 @@ static int	check_tile(char **map, size_t y, size_t x)
 	return (0);
 }
 
-static int	check_wall(char **map, size_t y, size_t x)
+static int	parse_map_loop(char **map, size_t y, size_t x, int *found)
 {
-	return (is_in_set("0NSWE", map[y][x]) && check_tile(map, y, x));
+	int	retval[3];
+
+	retval[0] = is_in_set("01NSWE ", map[y][x]);
+	retval[1] = 0;
+	retval[2] = is_in_set("0NSWE", map[y][x]);
+	if (!retval[0])
+		ft_error(NULL, "invalid character in the map, use NSWE01");
+	else if (retval[0] && retval[2])
+		retval[1] = check_tile(map, y, x);
+	if ((retval[0] && retval[2]) && retval[1])
+		ft_error(NULL, "the map is not surrounded by walls");
+	if (!retval[0] || ((retval[0] && retval[2]) && retval[1]))
+		return (1);
+	if (retval[2] && map[y][x] != '0')
+		*found = 1;
+	return (0);
 }
 
 int	parse_map(char **map)
 {
-	size_t	yx[2];
+	size_t	y;
+	size_t	x;
 	int		found;
 
-	yx[0] = 0;
+	y = 0;
 	found = 0;
-	while (map[++yx[0] - 1])
+	while (map[y])
 	{
-		yx[1] = 0;
-		while (map[yx[0] - 1][++yx[1] - 1])
+		x = 0;
+		while (map[y][x])
 		{
-			if (!is_in_set("01NSWE ", map[yx[0] - 1][yx[1] - 1]))
-				ft_error(NULL, "invalid character in the map, use NSWE01");
-			else if (check_wall(map, yx[0] - 1, yx[1] - 1))
-				ft_error(NULL, "the map is not surrounded by walls");
-			if ((!is_in_set("01NSWE ", map[yx[0] - 1][yx[1] - 1])) ||
-				(is_in_set("0NSWE", map[yx[0] - 1][yx[1] - 1]) &&
-				check_tile(map, yx[0] - 1, yx[1] - 1)))
+			if (parse_map_loop(map, y, x, &found))
 				return (1);
-			if (is_in_set("NSWE", map[yx[0] - 1][yx[0] - 1]))
-				found = 1;
+			x++;
 		}
+		y++;
 	}
 	if (!found)
 		ft_error(NULL, "the map has no player spawn");

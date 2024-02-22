@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:39:11 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 02:58:11 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 06:10:23 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ int	main(int argc, char **argv)
 	parser(argv[1]);
 	gnl_release();
 	reset_graph();
+	printf("no problem with map\n");
 	return (0);
 }

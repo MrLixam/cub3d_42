@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:39:11 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 18:16:14 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:29:26 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,15 @@ int	main(int argc, char **argv)
 	check_argc(argc);
 	parser(argv[1]);
 	mlx = mlx_init();
+	if (!mlx)
+		ft_error(NULL, "maldavid est mauvais");
 	if (mlx)
 	{
-		game = set_game();
+		game = set_game(mlx);
+		if (!game)
+			gnl_release();
+		if (!game)
+			exit(1);
 		
 	}
 	gnl_release();

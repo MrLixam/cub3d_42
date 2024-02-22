@@ -6,16 +6,24 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:41:18 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 18:12:21 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:22:17 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	set_orientation(t_game *game)
+void	set_map_data(t_game *game, t_graphic *graphics)
 {
-	char orientation;
+	char	orientation;
 
+	game->map = graphics->map;
+	graphics->map = NULL;
+	game->map_width = ft_strlen(game->map[0]);
+	game->map_height = ft_len_arr(game->map);
+	game->player.x = graphics->spawn_x;
+	game->player.y = graphics->spawn_y;
+	game->player.Y = RES / 2;
+	game->player.X = RES / 2;
 	orientation = game->map[game->player.y][game->player.x];
 	if (orientation == 'N')
 		game->player.view = PI;
@@ -34,18 +42,12 @@ t_game	*set_game(void *mlx)
 
 	graphics = get_graph();
 	game = ft_calloc(1, sizeof(t_game));
-	if (!game)
-		return (NULL);
-	game->mlx = mlx;
-	game->map = graphics->map;
-	graphics->map = NULL;
-	game->map_width = ft_strlen(game->map[0]);
-	game->map_height = ft_len_arr(game->map);
-	game->player.x = graphics->spawn_x;
-	game->player.y = graphics->spawn_y;
-	game->player.Y = RES / 2;
-	game->player.X = RES / 2;
-	set_textures(graphics, game);
+	if (game)
+	{
+		game->mlx = mlx;
+		set_map_data(game, graphics);
+		set_textures(graphics, game);
+	}
 	reset_graph();
 	return (game);
 }

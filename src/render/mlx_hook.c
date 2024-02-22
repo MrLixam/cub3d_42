@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r <marvin@42.fr>                           +#+  +:+       +#+        */
+/*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:06:23 by r                 #+#    #+#             */
-/*   Updated: 2024/02/22 12:40:42 by r                ###   ########.fr       */
+/*   Updated: 2024/02/22 18:43:25 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void render_player(t_game game, t_pc pc)
 	int	px;
 	int	py;
 
-	px = (pc.x * RES) + pc.X;
-	py = (pc.y * RES) + pc.Y;
+	px = (pc.x * RES) + pc.sub_x;
+	py = (pc.y * RES) + pc.sub_y;
     x = -1;
     while (++x < 16)
     {
@@ -41,37 +41,37 @@ int	player_action(t_game *game, int i)
 {
 	if (i == 4)
 	{
-		game->player.X += 4;
-		if (game->player.X > RES)
+		game->player.sub_x += 4;
+		if (game->player.sub_x > RES)
 		{
-			game->player.X = 1;
+			game->player.sub_x = 1;
 			game->player.x++;
 		}
 	}
 	if (i == 1)
 	{
-		game->player.Y -= 4;
-		if (game->player.Y < 1)
+		game->player.sub_y -= 4;
+		if (game->player.sub_y < 1)
 		{
-			game->player.Y = RES;
+			game->player.sub_y = RES;
 			game->player.y--;
 		}
 	}
 	if (i == 2)
 	{
-		game->player.X -= 4;
-		if (game->player.X < 1)
+		game->player.sub_x -= 4;
+		if (game->player.sub_x < 1)
 		{
-			game->player.X = RES;
+			game->player.sub_x = RES;
 			game->player.x--;
 		}
 	}
 	if (i == 3)
 	{
-		game->player.Y += 4;
-		if (game->player.Y > RES)
+		game->player.sub_y += 4;
+		if (game->player.sub_y > RES)
 		{
-			game->player.Y = 1;
+			game->player.sub_y = 1;
 			game->player.y++;
 		}
 	}

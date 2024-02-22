@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:02:59 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 18:12:14 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:32:10 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static void	check_img(t_game *game, t_graphic *graphics)
 static void	set_img(t_img *image, char *path, void *mlx)
 {
 	if (path)
-		image->img = mlx_png_file_to_image(mlx, path, &image->width, &image->height);
+		image->img = mlx_png_file_to_image(mlx, path, &image->width,
+				&image->height);
 	else
 		image->img = NULL;
 }

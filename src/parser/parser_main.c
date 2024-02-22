@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:32:59 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 16:57:18 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:31:18 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static int	parser_file(char *path)
 	if (parse_extern(path, ".cub"))
 		return (1);
 	init_graph();
-	if  (check_graph())
+	if (check_graph())
 	{
 		reset_graph();
 		ft_error(NULL, "struct init failed");
-		return(1);
+		return (1);
 	}
 	if (valid_config(path) || get_graph()->map == NULL)
 	{

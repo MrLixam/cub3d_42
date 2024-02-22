@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r <marvin@42.fr>                           +#+  +:+       +#+        */
+/*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:49:08 by r                 #+#    #+#             */
-/*   Updated: 2024/02/22 15:21:53 by r                ###   ########.fr       */
+/*   Updated: 2024/02/22 18:41:09 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	horizontal_line(t_game *game, t_line *hor)
 	int		px;
 	int		py;
 
-	px = game->player.x * RES + game->player.X;
-	py = game->player.y * RES + game->player.Y;
+	px = game->player.x * RES + game->player.sub_x;
+	py = game->player.y * RES + game->player.sub_y;
 	atan = -1 / tan(game->raycast.ray);
 	if (game->raycast.ray > PI)
 	{
@@ -46,8 +46,8 @@ void	vertical_line(t_game *game, t_line *ver)
 	int		px;
 	int		py;
 
-	px = game->player.x * RES + game->player.X;
-	py = game->player.y * RES + game->player.Y;
+	px = game->player.x * RES + game->player.sub_x;
+	py = game->player.y * RES + game->player.sub_y;
 	ntan = -tan(game->raycast.ray);
 	if (game->raycast.ray > P2 && game->raycast.ray < P3)
 	{
@@ -81,8 +81,8 @@ float	wall_hit(t_game *game, t_line *line)
 	int	px;
 	int	py;
 
-	px = game->player.x * RES + game->player.X;
-	py = game->player.y * RES + game->player.Y;
+	px = game->player.x * RES + game->player.sub_x;
+	py = game->player.y * RES + game->player.sub_y;
 	dof = 0;
 	while (dof < 8)
 	{
@@ -119,8 +119,8 @@ int	raycast(t_game *game)
 	int	py;
 	float	ca;
 
-	px = game->player.x * RES + game->player.X;
-	py = game->player.y * RES + game->player.Y;
+	px = game->player.x * RES + game->player.sub_x;
+	py = game->player.y * RES + game->player.sub_y;
 
 	i = -1;
 	game->raycast.ray = game->player.view - DEG * 30;

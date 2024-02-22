@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:39:11 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 18:29:26 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:30:40 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(int argc, char **argv)
 			gnl_release();
 		if (!game)
 			exit(1);
-		
 	}
 	gnl_release();
 	return (0);

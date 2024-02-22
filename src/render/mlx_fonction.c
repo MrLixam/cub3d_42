@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_fonction.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r <marvin@42.fr>                           +#+  +:+       +#+        */
+/*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:39:41 by r                 #+#    #+#             */
-/*   Updated: 2024/02/22 15:24:29 by r                ###   ########.fr       */
+/*   Updated: 2024/02/22 18:43:44 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,8 @@ int	cub3d(void)
 	game.map_height = 8;
 	game.player.x = 2;
 	game.player.y = 2;
-	game.player.X = 40;
-	game.player.Y = 10;
+	game.player.sub_x = 40;
+	game.player.sub_y = 10;
 	game.player.view = 0;
 
 	if (mlx_start(&game))

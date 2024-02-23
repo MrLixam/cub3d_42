@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:41:18 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 18:34:21 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:39:42 by gpouzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ void	set_map_data(t_game *game, t_graphic *graphics)
 	game->player.sub_x = RES / 2;
 	orientation = game->map[game->player.y][game->player.x];
 	if (orientation == 'N')
-		game->player.view = PI;
+		game->player.view = P3;
 	if (orientation == 'S')
-		game->player.view = 3 * PI;
+		game->player.view = P2;
 	if (orientation == 'E')
 		game->player.view = 0;
 	if (orientation == 'W')
-		game->player.view = 2 * PI;
+		game->player.view = PI;
+	game->map[game->player.y][game->player.x] = '0';
 }
 
 t_game	*set_game(void *mlx)

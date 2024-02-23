@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:03:16 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 18:36:16 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:44:36 by gpouzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 #  define RES 64
 # endif
 
-int		cub3d(void);
+int		cub3d(t_game *game);
 /*			mlx			*/
 int 	hook_handler(int keycode, void *game);
 void    render_map(t_game *game, char **map);
-void	draw_line(t_game *game, int deg, float dist);
+void	draw_line(t_game *game, int deg, t_ray ray);
 /*			raycast		*/
 int	raycast(t_game *game);
 

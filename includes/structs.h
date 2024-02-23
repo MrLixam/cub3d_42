@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:52:56 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/23 10:06:38 by r                ###   ########.fr       */
+/*   Updated: 2024/02/23 16:23:34 by gpouzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,6 @@ typedef struct s_graphic_data
 	size_t	spawn_x;
 	size_t	spawn_y;
 }			t_graphic;
-/*
-typedef struct s_data
-{
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_data;
-*/
 
 typedef struct s_img
 {
@@ -84,6 +75,7 @@ typedef struct s_raycast
 	float	ray;
 	t_line	*horizontal;
 	t_line	*vertical;
+	int		side;
 	float	dist;
 }			t_ray;
 

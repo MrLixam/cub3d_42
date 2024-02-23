@@ -6,17 +6,17 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:49:08 by r                 #+#    #+#             */
-/*   Updated: 2024/02/22 18:41:09 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:14:17 by r                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/render.h"
+#include "../../includes/cub3d.h"
 
 void	horizontal_line(t_game *game, t_line *hor)
 {
 	float	atan;
-	int		px;
-	int		py;
+	float	px;
+	float	py;
 
 	px = game->player.x * RES + game->player.sub_x;
 	py = game->player.y * RES + game->player.sub_y;
@@ -43,8 +43,8 @@ void	horizontal_line(t_game *game, t_line *hor)
 void	vertical_line(t_game *game, t_line *ver)
 {
 	float	ntan;
-	int		px;
-	int		py;
+	float	px;
+	float	py;
 
 	px = game->player.x * RES + game->player.sub_x;
 	py = game->player.y * RES + game->player.sub_y;
@@ -75,11 +75,11 @@ float	distance(float ax, float ay, float bx, float by)
 
 float	wall_hit(t_game *game, t_line *line)
 {
-	int	mx;
-	int	my;
-	int	dof;
-	int	px;
-	int	py;
+	int		mx;
+	int		my;
+	int		dof;
+	float	px;
+	float	py;
 
 	px = game->player.x * RES + game->player.sub_x;
 	py = game->player.y * RES + game->player.sub_y;
@@ -113,10 +113,10 @@ void	shortest_line(t_game *game)
 
 int	raycast(t_game *game)
 {
-	int	i;
-	int	x;
-	int	px;
-	int	py;
+	int		i;
+	int		x;
+	float	px;
+	float	py;
 	float	ca;
 
 	px = game->player.x * RES + game->player.sub_x;

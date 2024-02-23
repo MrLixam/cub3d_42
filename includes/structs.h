@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:52:56 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 18:39:14 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:06:38 by r                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ typedef struct s_playable_character
 {
 	size_t	x;
 	size_t	y;
-	int		sub_x;
-	int		sub_y;
+	float	sub_x;
+	float	sub_y;
 	float	view;
 }			t_pc;
 

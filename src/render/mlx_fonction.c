@@ -6,11 +6,11 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:39:41 by r                 #+#    #+#             */
-/*   Updated: 2024/02/22 18:43:44 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:14:56 by r                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/render.h"
+#include "../../includes/cub3d.h"
 
 static int  mlx_end(t_game *game)
 {
@@ -38,14 +38,7 @@ static int  mlx_start(t_game *game)
 		mlx_end(game);
 		return (1);
 	}
-/*	set_addr(&game->frame);
-	if (game->frame.data.addr == NULL)
-	{
-		mlx_destroy_image(game->mlx, game->frame.img);
-		mlx_end(game);
-		return (1);
-	}
-*/	return (0);
+	return (0);
 }
 
 size_t	ft_tabstrlen(char **arg)
@@ -56,14 +49,6 @@ size_t	ft_tabstrlen(char **arg)
 	while (arg[i] != NULL)
 		i++;
 	return (i);
-}
-
-void    my_pixel_put(t_data *data, int x, int y, int color)
-{
-    char    *dst;
-
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int *)dst = color;
 }
 
 static void render_til(t_game game, int x_map, int y_map, int wall)

@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:49:08 by r                 #+#    #+#             */
-/*   Updated: 2024/02/23 11:14:17 by r                ###   ########.fr       */
+/*   Updated: 2024/02/23 19:55:36 by gpouzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,20 @@ float	distance(float ax, float ay, float bx, float by)
 
 float	wall_hit(t_game *game, t_line *line)
 {
+	int		limite;
 	int		mx;
 	int		my;
 	int		dof;
 	float	px;
 	float	py;
 
+	limite = game->map_height;
+	if (game->map_width > game->map_height)
+		limite = game->map_width;
 	px = game->player.x * RES + game->player.sub_x;
 	py = game->player.y * RES + game->player.sub_y;
-	dof = 0;
-	while (dof < 8)
+	dof = -1;
+	while (++dof < limite)
 	{
 		mx = (int)line->ray_dist_x / RES;
 		my = (int)line->ray_dist_y / RES;
@@ -93,7 +97,6 @@ float	wall_hit(t_game *game, t_line *line)
 			break ;
 		line->ray_dist_x += line->side_dist_x;
 		line->ray_dist_y += line->side_dist_y;
-		dof++;
 	}
 	return (distance(px, py, line->ray_dist_x, line->ray_dist_y));
 }
@@ -106,15 +109,27 @@ void	shortest_line(t_game *game)
 	dist_h = wall_hit(game, game->raycast.horizontal);
 	dist_v = wall_hit(game, game->raycast.vertical);
 	if (dist_v <= 0 || ( dist_h >= 0 && dist_h < dist_v))
+	{
 		game->raycast.dist = dist_h;
+		game->raycast.wall_hit = game->raycast.horizontal->ray_dist_x;
+		if (game->raycast.ray >= 0 && game->raycast.ray < PI)
+			game->raycast.side = 1;
+		else
+			game->raycast.side = 3;
+	}
 	if (dist_h <= 0 || ( dist_v >= 0 && dist_v < dist_h))
+	{
 		game->raycast.dist = dist_v;
+		game->raycast.wall_hit = game->raycast.vertical->ray_dist_y;
+		if (game->raycast.ray >= P2 && game->raycast.ray < P3)
+			game->raycast.side = 2;
+		else
+			game->raycast.side = 4;
+	}
 }
-
 int	raycast(t_game *game)
 {
 	int		i;
-	int		x;
 	float	px;
 	float	py;
 	float	ca;
@@ -124,7 +139,7 @@ int	raycast(t_game *game)
 
 	i = -1;
 	game->raycast.ray = game->player.view - DEG * 30;
-	while (++i < 60)
+	while (++i < 360)
 	{
 		if (game->raycast.ray < 0)
 			game->raycast.ray += 2 * PI;
@@ -150,13 +165,13 @@ int	raycast(t_game *game)
 		if (ca > 2 * PI)
 			ca -= 2 * PI;
 		game->raycast.dist = game->raycast.dist * cos(ca);
-		draw_line(game, i, game->raycast.dist);
-		x = -1;
+		draw_line(game, i, game->raycast);
+/*		x = -1;
     	while (++x < (int)game->raycast.dist)
     	{   
     	    mlx_pixel_put(game->mlx, game->win,1100+ 8 + px + (x * cos(game->raycast.ray)), 8 + py + (x * sin(game->raycast.ray)), 0xC5BCFA);
     	}
-		game->raycast.ray += DEG;
+*/		game->raycast.ray += DEG / 6;
 	}
 	return (0);
 }

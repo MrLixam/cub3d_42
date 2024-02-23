@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:52:56 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/23 17:12:53 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:55:35 by gpouzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_raycast
 	t_line	*vertical;
 	int		side;
 	float	dist;
+	float	wall_hit;
 }			t_ray;
 
 typedef struct s_game

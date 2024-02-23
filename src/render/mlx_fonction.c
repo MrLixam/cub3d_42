@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:39:41 by r                 #+#    #+#             */
-/*   Updated: 2024/02/23 11:14:56 by r                ###   ########.fr       */
+/*   Updated: 2024/02/23 19:55:38 by gpouzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int  mlx_end(t_game *game)
 {
-//	freetab(game->map);
+	ft_free_arr(game->map);
 	mlx_destroy_image(game->mlx, game->frame.img);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
@@ -23,9 +23,6 @@ static int  mlx_end(t_game *game)
 
 static int  mlx_start(t_game *game)
 {
-	game->mlx = mlx_init();
-	if (game->mlx == NULL)
-		return (1);
 	game->win = mlx_new_window(game->mlx, 1680, 720, "cub3d");
 	if (game->win == NULL)
 	{
@@ -40,7 +37,7 @@ static int  mlx_start(t_game *game)
 	}
 	return (0);
 }
-
+/*
 size_t	ft_tabstrlen(char **arg)
 {
 	size_t	i;
@@ -71,63 +68,85 @@ static void render_til(t_game game, int x_map, int y_map, int wall)
         }
     }
 }
+*/
+int	get_texture_pixel(t_game *game, t_img texture, int lineh, int j)
+{
+	double		step;
+	int			i;
+	int			pixel;
 
-void	draw_line(t_game *game, int deg, float dist)
+	step = 1.0 * texture.height / lineh;
+	i = fmod(game->raycast.wall_hit, texture.width);
+	pixel = mlx_get_image_pixel(game->mlx, texture.img, i, j * step);
+	return (pixel);
+}
+
+
+void	wall_texture(t_game *game, t_ray ray, int i, int j, int lineh)
+{
+	int	pixel;
+	int lineo;
+
+	lineo = 360 - lineh / 2;
+	if (ray.side == 1)
+		pixel = get_texture_pixel(game, game->texture.south, lineh, j - lineo);
+	else if (ray.side == 2)
+		pixel = get_texture_pixel(game, game->texture.east, lineh, j - lineo);
+	else if (ray.side == 3)
+		pixel = get_texture_pixel(game, game->texture.north, lineh, j - lineo);
+	else
+		pixel = get_texture_pixel(game, game->texture.west, lineh, j - lineo);
+    mlx_set_image_pixel(game->mlx, game->frame.img, i, j, pixel);
+}
+
+void	draw_line(t_game *game, int deg, t_ray ray)
 {
 	int	i;
 	int	j;
 	int	lineh;
 	int	lineo;
 
-	lineh = (RES * 720) / dist;
+	lineh = (RES * 720) / ray.dist;
 	lineo = 360 - lineh / 2;
 	i = -1;
-	while (++i < 1080 / 60)
+	while (++i < 1080 / 360)
 	{
 		j = -1;
 		while (++j < 720)
 		{
-    		mlx_pixel_put(game->mlx, game->win, i+(18*deg), j, 0xFF0000FF);
-			if (j > lineo && j < lineh + lineo)
-    			mlx_pixel_put(game->mlx, game->win, i+(18*deg), j, 0xFFFF00FF);
+			if (j < lineo)
+    			mlx_set_image_pixel(game->mlx, game->frame.img, i + (3 * deg), j, game->texture.ceiling->hex);
+			else if (j > lineo && j < lineh + lineo)
+				wall_texture(game, ray, i + (3 * deg), j, lineh);
+			else
+    			mlx_set_image_pixel(game->mlx, game->frame.img, i + (3 * deg), j, game->texture.floor->hex);
 		}
 	}
+	mlx_put_image_to_window(game->mlx,game->win, game->frame.img, 0, 0);
 }
-
+/*
 void    render_map(t_game *game, char **map)
 {
     int x;
     int y;
 
     y = -1;
-    while (++y < 8/*(int)ft_tabstrlen(map)*/)
+    while (++y < (int)game->map_height)
     {
         x = -1;
-        while (++x < 8/*(int)ft_strlen(*map)*/)
+        while (++x < (int)game->map_width)
             render_til(*game, x, y, map[y][x] - 48);
     }
-	//mlx_put_image_to_window(game->mlx, game->win, game->frame.img, 0, 0);
 	raycast(game);
 }
-
-int	cub3d(void)
+*/
+int	cub3d(t_game *game)
 {
-	t_game	game;
-	game.map = (char *[]){"11111111", "10000001", "10010001", "10010001", 
-						  "10000001", "10000101", "10000001", "11111111"};
-	game.map_width = 8;
-	game.map_height = 8;
-	game.player.x = 2;
-	game.player.y = 2;
-	game.player.sub_x = 40;
-	game.player.sub_y = 10;
-	game.player.view = 0;
-
-	if (mlx_start(&game))
+	if (mlx_start(game))
 		return (1);
-	mlx_on_event(game.mlx, game.win, MLX_KEYDOWN, hook_handler, &game);
-	mlx_on_event(game.mlx, game.win, MLX_WINDOW_EVENT, hook_handler, &game);
-	mlx_loop(game.mlx);
-	mlx_end(&game);
+	mlx_on_event(game->mlx, game->win, MLX_KEYDOWN, hook_handler, game);
+	mlx_on_event(game->mlx, game->win, MLX_WINDOW_EVENT, hook_handler, game);
+	mlx_loop(game->mlx);
+	mlx_end(game);
 	return (0);
 }

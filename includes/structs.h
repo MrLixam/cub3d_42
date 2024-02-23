@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:52:56 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/23 16:23:34 by gpouzet          ###   ########.fr       */
+/*   Updated: 2024/02/23 17:12:53 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_color
 	int		red;
 	int		green;
 	int		blue;
+	int		hex;
 }			t_color;
 
 typedef struct s_graphic_data
@@ -81,15 +82,15 @@ typedef struct s_raycast
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	char		**map;
-	size_t		map_width;
-	size_t		map_height;
-	t_img		frame;
-	t_txt		texture;
-	t_pc		player;
-	t_ray		raycast;
+	void	*mlx;
+	void	*win;
+	char	**map;
+	size_t	map_width;
+	size_t	map_height;
+	t_img	frame;
+	t_txt	texture;
+	t_pc	player;
+	t_ray	raycast;
 }			t_game;
 
 #endif

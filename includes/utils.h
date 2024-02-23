@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:04:41 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 18:22:04 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:13:44 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void		init_graph(void);
 int			check_graph(void);
 t_game		*set_game(void *mlx);
 void		set_textures(t_graphic *graphics, t_game *game);
+int			color_struct(t_color *color);
 
 #endif

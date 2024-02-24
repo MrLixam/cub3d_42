@@ -6,54 +6,60 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:06:23 by r                 #+#    #+#             */
-/*   Updated: 2024/02/24 07:12:58 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 08:50:55 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static void	update_position_x(t_game *game, float x)
+static void	update_position_x(t_game *game, float newx)
 {
 	float	new_sub_x;
 	int		tile_shift;
 
-	new_sub_x = game->player.sub_x + 4 * x;
+	new_sub_x = game->player.sub_x + SPEED * newx;
 	tile_shift = 0;
-	if (new_sub_x > RES)
-	{
-		tile_shift = 1;
-		new_sub_x = fmod(new_sub_x, RES);
-	}
-	else if (new_sub_x < 0)
-	{
-		tile_shift = -1;
+	if (new_sub_x >= RES || new_sub_x < 0)
+		tile_shift = (new_sub_x > 0) - (new_sub_x < 0);
+	if (new_sub_x < 0)
 		new_sub_x = RES - fmod(-new_sub_x, RES);
-	}
-	if (game->map[game->player.y][game->player.x + tile_shift] == '1')
+	else
+		new_sub_x = fmod(new_sub_x, RES);
+	if ((game->map_width <= game->player.x + tile_shift) ||
+		(game->map[game->player.y][game->player.x + tile_shift] != '0'))
+	{
+		if (tile_shift > 0)
+			game->player.sub_x = RES;
+		else if (tile_shift < 0)
+			game->player.sub_x = 0;
 		return ;
+	}
 	game->player.sub_x = new_sub_x;
 	game->player.x += tile_shift;
 }
 
-static void	update_position_y(t_game *game, float y)
+static void	update_position_y(t_game *game, float newy)
 {
 	float	new_sub_y;
 	int		tile_shift;
 
-	new_sub_y = game->player.sub_y + 4 * y;
+	new_sub_y = game->player.sub_y + SPEED * newy;
 	tile_shift = 0;
-	if (new_sub_y > RES)
-	{
-		tile_shift = 1;
-		new_sub_y = fmod(new_sub_y, RES);
-	}
-	else if (new_sub_y < 0)
-	{
-		tile_shift = -1;
+	if (new_sub_y >= RES || new_sub_y < 0)
+		tile_shift = (new_sub_y > 0) - (new_sub_y < 0);
+	if (new_sub_y < 0)
 		new_sub_y = RES - fmod(-new_sub_y, RES);
-	}
-	if (game->map[game->player.y + tile_shift][game->player.x] == '1')
+	else
+		new_sub_y = fmod(new_sub_y, RES);
+	if ((game->map_height <= game->player.y + tile_shift) ||
+		(game->map[game->player.y + tile_shift][game->player.x] != '0'))
+	{
+		if (tile_shift > 0)
+			game->player.sub_y = RES;
+		else if (tile_shift < 0)
+			game->player.sub_y = 0;
 		return ;
+	}
 	game->player.sub_y = new_sub_y;
 	game->player.y += tile_shift;
 }
@@ -80,10 +86,10 @@ static void	update_position_y(t_game *game, float y)
 	else
 		game->player.sub_y += 4 * y;*/
 
-static int	player_action(t_game *game, float x, float y)
+static int	player_action(t_game *game, float newx, float newy)
 {
-	update_position_x(game, x);
-	update_position_y(game, y);
+	update_position_x(game, newx);
+	update_position_y(game, newy);
 	return (0);
 }
 

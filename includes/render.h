@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:03:16 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/24 04:57:21 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 08:48:48 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # endif
 # ifndef RES
 #  define RES 64
+# ifndef SPEED
+#  define SPEED 1
+# endif
 # endif
 
 int		cub3d(t_game *game);

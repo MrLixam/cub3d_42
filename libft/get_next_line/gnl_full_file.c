@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 08:18:02 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 08:31:04 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 09:21:27 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	**gnl_full_file(char *path)
 	buffer[1] = buffer[0];
 	if (!buffer[0])
 		return (NULL);
-	result = ft_calloc(count_a_char(buffer[0], '\n') + 1, sizeof(char *));
+	result = ft_calloc(count_a_char(buffer[0], '\n') + 2, sizeof(char *));
 	if (result)
 	{
 		i = 0;

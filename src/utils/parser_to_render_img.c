@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:02:59 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/24 05:08:23 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 09:37:04 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	set_textures(t_graphic *graphics, t_game *game)
 	set_img(&texture->south, graphics->south, game->mlx);
 	set_img(&texture->west, graphics->west, game->mlx);
 	set_img(&texture->east, graphics->east, game->mlx);
-	game->texture.ceiling->hex = get_argb(255, game->texture.ceiling->red, game->texture.ceiling->green, game->texture.ceiling->blue);
-	game->texture.floor->hex = get_argb(255, game->texture.floor->red, game->texture.floor->green, game->texture.floor->blue);
+	game->texture.ceiling->hex = color_struct(game->texture.ceiling);
+	game->texture.floor->hex = color_struct(game->texture.floor);
 	check_img(game);
 }

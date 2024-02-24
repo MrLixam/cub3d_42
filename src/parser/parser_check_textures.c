@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 05:19:20 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/21 00:15:22 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 15:43:49 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ static int	check_image(char *path)
 
 	if (path == NULL)
 		return (0);
-	tmp[0] = open(path, O_RDONLY);
-	if (tmp[0] == -1)
-		ft_perror(path);
-	if (tmp[0] == -1)
+	if (not_valid_file(path))
 		return (1);
 	tmp[1] = read(tmp[0], buffer, 8);
 	if (tmp[1] != 8)

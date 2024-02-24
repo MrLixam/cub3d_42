@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 08:18:02 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/24 12:42:20 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 15:59:24 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,8 @@ char	*gnl_full_file_str(char *path)
 
 static char	*gnl_ff_allocate(char *buffer, char *move)
 {
-	char *buff;
+	char	*buff;
 
-	if (buffer == move)
-		return (ft_strdup(""));
 	if (move)
 	{
 		buff = ft_substr(buffer, 0, move + 1 - buffer);

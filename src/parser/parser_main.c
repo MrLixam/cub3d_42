@@ -6,11 +6,34 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:32:59 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 18:31:18 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 15:54:45 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+static int	valid_config(char *path)
+{
+	char	**file;
+	int		i;
+	int		max;
+
+	i = 0;
+	file = gnl_full_file(path);
+	max = base_tests(file, path);
+	if (!max)
+		if (file)
+			ft_free_arr(file);
+	if (!max)
+		return (1);
+	i = get_texture_paths(file, max);
+	if (i != -1)
+		i = get_colors_path(file, max);
+	if (i != -1 && no_empty_line(file, max))
+		get_graph()->map = normalize_map(file, max);
+	ft_free_arr(file);
+	return (i == -1);
+}
 
 static int	parser_file(char *path)
 {

@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 05:51:01 by lvincent          #+#    #+#              #
-#    Updated: 2024/02/24 11:50:05 by gpouzet          ###   ########.fr        #
+#    Updated: 2024/02/24 15:57:37 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ OBJ_DIR = obj
 SRC 	=	src/main.c \
 			src/parser/parser_interior.c src/parser/parser_index_color.c src/parser/parser_main.c\
 			src/parser/parser_exterior.c src/parser/parser_index_textures.c src/parser/parser_map.c\
-			src/parser/parser_check_textures.c\
+			src/parser/parser_check_textures.c src/utils/utils_parser.c\
 			src/utils/utils_misc.c src/utils/utils_error.c src/utils/utils_graphics.c\
 			src/utils/parser_to_render.c src/utils/parser_to_render_img.c src/utils/utils_color.c\
 			src/render/mlx_core.c src/render/mlx_fonction.c src/render/mlx_hook.c\

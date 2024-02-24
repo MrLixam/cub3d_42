@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 08:43:10 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/21 00:12:57 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 15:44:25 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	not_valid_file(char *name)
 	if (fd != -1)
 	{
 		close(fd);
-		ft_error(name, "is a directory");
+		ft_error(name, "Is a directory");
 		return (1);
 	}
 	fd = open(name, O_RDONLY);

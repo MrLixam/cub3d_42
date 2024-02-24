@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 05:19:20 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/24 16:51:35 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:00:40 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static int	check_image(char *path)
 		check_error(tmp[0], tmp[1], path);
 		return (1);
 	}
+	close(tmp[0]);
 	return (0);
 }
 

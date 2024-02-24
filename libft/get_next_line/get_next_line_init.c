@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 02:34:31 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/21 00:17:13 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:02:53 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static char	*config_file(void)
 	if (readb == -1)
 		if (file)
 			free(file);
+	close(fd);
 	return (file);
 }
 

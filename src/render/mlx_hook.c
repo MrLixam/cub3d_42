@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:06:23 by r                 #+#    #+#             */
-/*   Updated: 2024/02/24 08:50:55 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 09:56:01 by gpouzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	update_position_x(t_game *game, float newx)
 		new_sub_x = RES - fmod(-new_sub_x, RES);
 	else
 		new_sub_x = fmod(new_sub_x, RES);
-	if ((game->map_width <= game->player.x + tile_shift) ||
-		(game->map[game->player.y][game->player.x + tile_shift] != '0'))
+	if ((game->map_width <= game->player.x + tile_shift)
+		|| (game->map[game->player.y][game->player.x + tile_shift] != '0'))
 	{
 		if (tile_shift > 0)
 			game->player.sub_x = RES;
@@ -51,8 +51,8 @@ static void	update_position_y(t_game *game, float newy)
 		new_sub_y = RES - fmod(-new_sub_y, RES);
 	else
 		new_sub_y = fmod(new_sub_y, RES);
-	if ((game->map_height <= game->player.y + tile_shift) ||
-		(game->map[game->player.y + tile_shift][game->player.x] != '0'))
+	if ((game->map_height <= game->player.y + tile_shift)
+		|| (game->map[game->player.y + tile_shift][game->player.x] != '0'))
 	{
 		if (tile_shift > 0)
 			game->player.sub_y = RES;
@@ -112,7 +112,7 @@ static int	player_rotation(t_game *game, int direction)
 
 int	actions(void *param)
 {
-	t_game *game;
+	t_game	*game;
 	float	view;
 	bool	*events;
 
@@ -131,7 +131,8 @@ int	actions(void *param)
 		player_rotation(game, 2);
 	if (game->events[5])
 		player_rotation(game, 1);
-	if (events[0] || events[1] || events[2] || events[3] || events[4] || events[5])
+	if (events[0] || events[1] || events[2] || events[3]
+		|| events[4] || events[5])
 		raycast(game);
 	return (0);
 }

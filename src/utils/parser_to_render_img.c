@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:02:59 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/24 09:37:04 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 11:51:01 by gpouzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	set_img(t_img *image, char *path, void *mlx)
 		image->height = 2;
 		image->width = 2;
 		if (image->img == NULL)
-			return;
+			return ;
 		mlx_set_image_pixel(mlx, image->img, 0, 0, 0xFFFF00FF);
 		mlx_set_image_pixel(mlx, image->img, 1, 0, 0xFF000000);
 		mlx_set_image_pixel(mlx, image->img, 0, 1, 0xFF000000);

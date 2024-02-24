@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 05:51:01 by lvincent          #+#    #+#              #
-#    Updated: 2024/02/24 09:41:31 by lvincent         ###   ########.fr        #
+#    Updated: 2024/02/24 11:50:05 by gpouzet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRC 	=	src/main.c \
 			src/utils/utils_misc.c src/utils/utils_error.c src/utils/utils_graphics.c\
 			src/utils/parser_to_render.c src/utils/parser_to_render_img.c src/utils/utils_color.c\
 			src/render/mlx_core.c src/render/mlx_fonction.c src/render/mlx_hook.c\
-		   	src/render/raycaster.c src/render/mlx_hook2.c\
+		   	src/render/raycaster.c src/render/ray_line.c src/render/mlx_hook2.c\
 
 OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 

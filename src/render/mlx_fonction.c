@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:39:41 by r                 #+#    #+#             */
-/*   Updated: 2024/02/24 00:58:38 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 01:28:42 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	get_texture_pixel(t_game *game, t_img texture, int lineh, int j)
 	int			pixel;
 
 	step =  1.0 * texture.height / lineh;
-	texX = fmod(game->raycast.wall_hit * texture.width / 64, texture.width);
+	texX = fmod(game->raycast.wall_hit * texture.width / RES, texture.width);
 	texY = (int)(j * step) % texture.height;
 	pixel = mlx_get_image_pixel(game->mlx, texture.img, texX, texY);
 	colors[0] = get_a(pixel);

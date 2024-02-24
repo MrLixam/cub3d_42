@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 15:46:24 by lvincent          #+#    #+#              #
-#    Updated: 2024/02/23 21:33:26 by lvincent         ###   ########.fr        #
+#    Updated: 2024/02/24 17:06:18 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,21 +72,21 @@ all : $(NAME)
 
 .c.o:
 
-	@echo -e "$(GREEN)LIBFT [Compiling ...]$(RESET) $<"
+	@printf "$(GREEN)LIBFT [Compiling ...]$(RESET) $<\n"
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME) : $(OBJ)
-	@echo -e "\n$(BLUE)[Compiled object files for libft]$(RESET)"
+	@printf "\n$(BLUE)[Compiled object files for libft]$(RESET)\n"
 	@$(AR) $(AR_FLAGS) $(NAME) $(OBJ)
-	@echo -e "$(YELLOW)[Compiled libft]$(RESET)\n"
+	@printf "$(YELLOW)[Compiled libft]$(RESET)\n"
 	
 clean:
 	@$(RM) $(OBJ)
-	@echo -e "$(RED)[Removed object files from libft]$(RESET)"
+	@printf "$(RED)[Removed object files from libft]$(RESET)\n"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo -e "$(RED)[Removed $(NAME)] $(RESET)"
+	@printf "$(RED)[Removed $(NAME)] $(RESET)\n"
 
 re: clean all
 

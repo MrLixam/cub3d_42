@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:06:23 by r                 #+#    #+#             */
-/*   Updated: 2024/02/23 20:22:17 by gpouzet          ###   ########.fr       */
+/*   Updated: 2024/02/24 00:47:04 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,14 @@ static int	player_rotation(t_game *game, int direction)
 	return (0);
 }
 
-int	hook_handler(int keycode, void *game)
+int	hook_keyboard(int keycode, void *game)
 {
 	t_game	*tmp;
 	float	view;
 
 	tmp = (t_game *)game;
 	view = tmp->player.view;
-	if (keycode == 41 || keycode == 0)
+	if (keycode == 41)
 		mlx_loop_end(tmp->mlx);
 	if (keycode == 26)
 		player_action(tmp, cos(view), sin(view));

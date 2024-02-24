@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 05:51:01 by lvincent          #+#    #+#              #
-#    Updated: 2024/02/23 20:20:39 by gpouzet          ###   ########.fr        #
+#    Updated: 2024/02/24 00:48:25 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,9 @@ SRC 	=	src/main.c \
 			src/parser/parser_exterior.c src/parser/parser_index_textures.c src/parser/parser_map.c\
 			src/parser/parser_check_textures.c\
 			src/utils/utils_misc.c src/utils/utils_error.c src/utils/utils_graphics.c\
-			src/utils/parser_to_render.c src/utils/parser_to_render_img.c\
+			src/utils/parser_to_render.c src/utils/parser_to_render_img.c src/utils/utils_color.c\
 			src/render/mlx_core.c src/render/mlx_fonction.c src/render/mlx_hook.c\
-		   	src/render/raycaster.c\
+		   	src/render/raycaster.c src/render/mlx_hook2.c\
 
 OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 
@@ -78,7 +78,7 @@ re_mlx: fclean_mlx all
 
 re: fclean all
 
-debug: FLAGS += -g -pg
+debug: FLAGS += -g
 debug: $(MLX) $(OBJ)
 	@make debug --no-print-directory -C libft -j
 	@$(CC) $(FLAGS) $(OBJ) -L./libft -lft ./MacroLibX/libmlx.so -lSDL2 -lm -o $(NAME)

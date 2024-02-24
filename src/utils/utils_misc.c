@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:25:21 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/23 17:12:19 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 00:57:41 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ char	*ft_strinsert(char *base, char *ins, size_t pos)
 
 int	color_struct(t_color *color)
 {
-	return (255 << 24 | color->red << 16 | color->green | color->blue);
+	return (255 << 24 | color->red << 16 | color->green << 8 | color->blue);
 }

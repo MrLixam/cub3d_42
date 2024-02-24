@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:49:08 by r                 #+#    #+#             */
-/*   Updated: 2024/02/23 19:55:36 by gpouzet          ###   ########.fr       */
+/*   Updated: 2024/02/23 21:24:44 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,12 +130,12 @@ void	shortest_line(t_game *game)
 int	raycast(t_game *game)
 {
 	int		i;
-	float	px;
-	float	py;
+	//float	px;
+	//float	py;
 	float	ca;
 
-	px = game->player.x * RES + game->player.sub_x;
-	py = game->player.y * RES + game->player.sub_y;
+	//px = game->player.x * RES + game->player.sub_x;
+	//py = game->player.y * RES + game->player.sub_y;
 
 	i = -1;
 	game->raycast.ray = game->player.view - DEG * 30;

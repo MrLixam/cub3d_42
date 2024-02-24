@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 15:46:24 by lvincent          #+#    #+#              #
-#    Updated: 2024/02/22 08:19:20 by lvincent         ###   ########.fr        #
+#    Updated: 2024/02/23 21:33:26 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ fclean: clean
 
 re: clean all
 
-debug: CFLAGS += -g -pg
+debug: CFLAGS += -g
 debug: $(NAME)
 
 .PHONY: all clean fclean re debug

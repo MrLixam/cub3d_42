@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:03:16 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/23 20:22:31 by gpouzet          ###   ########.fr       */
+/*   Updated: 2024/02/24 00:40:16 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RENDER_H
 # include "cub3d.h"
 # ifndef PI
-#  define PI 3.14159265
+#  define PI 3.14159265f
 # endif
 # ifndef P2
 #  define P2 PI/2
@@ -31,7 +31,8 @@
 
 int		cub3d(t_game *game);
 /*			mlx			*/
-int 	hook_handler(int keycode, void *game);
+int 	hook_keyboard(int keycode, void *game);
+int		hook_window(int keycode, void *game);
 void    render_map(t_game *game, char **map);
 void	draw_line(t_game *game, int deg, t_ray ray);
 /*			raycast		*/

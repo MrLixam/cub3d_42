@@ -6,13 +6,13 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:02:59 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/23 17:01:12 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 01:19:02 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static void	destroy_game(t_game *game)
+void	destroy_game(t_game *game)
 {
 	ft_free_arr(game->map);
 	if (game->texture.floor)
@@ -31,18 +31,18 @@ static void	destroy_game(t_game *game)
 	free(game);
 }
 
-static void	check_img(t_game *game, t_graphic *graphics)
+static void	check_img(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	if (game->texture.north.img == NULL && graphics->north != NULL)
+	if (game->texture.north.img == NULL)
 		i = 1;
-	if (game->texture.south.img == NULL && graphics->east != NULL)
+	if (game->texture.south.img == NULL)
 		i = 1;
-	if (game->texture.west.img == NULL && graphics->east != NULL)
+	if (game->texture.west.img == NULL)
 		i = 1;
-	if (game->texture.east.img == NULL && graphics->east != NULL)
+	if (game->texture.east.img == NULL)
 		i = 1;
 	if (i)
 	{
@@ -59,7 +59,17 @@ static void	set_img(t_img *image, char *path, void *mlx)
 		image->img = mlx_png_file_to_image(mlx, path, &image->width,
 				&image->height);
 	else
-		image->img = NULL;
+	{
+		image->img = mlx_new_image(mlx, 2, 2);
+		image->height = 2;
+		image->width = 2;
+		if (image->img == NULL)
+			return;
+		mlx_set_image_pixel(mlx, image->img, 0, 0, 0xFF00FFFF);
+		mlx_set_image_pixel(mlx, image->img, 1, 0, 0x000000FF);
+		mlx_set_image_pixel(mlx, image->img, 0, 1, 0x000000FF);
+		mlx_set_image_pixel(mlx, image->img, 1, 1, 0x00FFFFFF);
+	}
 }
 
 void	set_textures(t_graphic *graphics, t_game *game)
@@ -77,5 +87,5 @@ void	set_textures(t_graphic *graphics, t_game *game)
 	set_img(&texture->east, graphics->east, game->mlx);
 	game->texture.ceiling->hex = color_struct(game->texture.ceiling);
 	game->texture.floor->hex = color_struct(game->texture.floor);
-	check_img(game, graphics);
+	check_img(game);
 }

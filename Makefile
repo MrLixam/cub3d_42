@@ -6,7 +6,7 @@
 #    By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 05:51:01 by lvincent          #+#    #+#              #
-#    Updated: 2024/02/24 17:05:56 by lvincent         ###   ########.fr        #
+#    Updated: 2024/02/24 17:08:35 by lvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,4 +84,4 @@ debug: $(MLX) $(OBJ)
 	@$(CC) $(FLAGS) $(OBJ) -L./libft -lft ./MacroLibX/libmlx.so -lSDL2 -lm -o $(NAME)
 	@printf "$(GREEN)[DEBUG Executable created]$(RESET)\n"
 
-.PHONY: all clean fclean re debug
+.PHONY: all clean fclean re debug clean_mlx fclean_mlx re_mlx

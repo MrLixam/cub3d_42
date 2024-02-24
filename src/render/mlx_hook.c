@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:06:23 by r                 #+#    #+#             */
-/*   Updated: 2024/02/24 06:24:42 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 06:28:31 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static void	update_position_x(t_game *game, float x)
 			game->player.sub_x = 0;
 			game->player.x++;
 		}
-		else
-			printf("Wall!");
 	}
 	else if (game->player.sub_x + 4 * x < 1)
 	{

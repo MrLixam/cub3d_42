@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 08:18:02 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/24 09:21:27 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 12:42:20 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ static char	*gnl_ff_allocate(char *buffer, char *move)
 {
 	char *buff;
 
-	
+	if (buffer == move)
+		return (ft_strdup(""));
 	if (move)
 	{
 		buff = ft_substr(buffer, 0, move + 1 - buffer);

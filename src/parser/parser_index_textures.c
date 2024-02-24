@@ -6,11 +6,20 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:33:52 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 08:32:42 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 12:07:58 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+size_t	len_wspace(char *line)
+{
+	size_t	i;
+	i = ft_strlen(line) - 1;
+	while (is_wspace(line[i]))
+		i--;
+	return (i + 1);
+}
 
 int	index_path(char *line, char **storage)
 {
@@ -20,7 +29,7 @@ int	index_path(char *line, char **storage)
 	start = 2;
 	while (ft_isspace(line[start]))
 		start++;
-	path = ft_substr(line, start, ft_strlen(line));
+	path = ft_substr(line, start, len_wspace(line) - start);
 	if (!path)
 		ft_error(NULL, "allocation error");
 	if (!path)
@@ -46,14 +55,8 @@ int	is_path(char *line)
 	int			rv;
 	t_graphic	*graphics;
 
-	if (!line)
-		return (1);
-	if (line[0] == 0)
-		return (0);
 	rv = 0;
 	graphics = get_graph();
-	if (ft_strlen(line) < 3)
-		return (1);
 	if ((line[0] == 'N' && line[1] == 'O') && ft_isspace(line[2]))
 		rv = index_path(line, &graphics->north);
 	else if ((line[0] == 'S' && line[1] == 'O') && ft_isspace(line[2]))

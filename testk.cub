@@ -1,8 +1,11 @@
 NO ./pics/gnomed.png
 SO ./pics/chokbar.png
 WE ./pics/gnomed.png
-EA ./pics/gnomed.png
+EA ./pics/chokbar.png
+
+F 255,255,255
+C 255,255,255
 
 111111111111111111111
 100000000000000N00001
-11111111111111111111
+111111111111111111111

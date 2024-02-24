@@ -6,11 +6,34 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:33:47 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 08:32:12 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 11:07:07 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+static void	remove_wspace(char **array)
+{
+	char	*buffer;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (array[i])
+	{
+		j = 0;
+		while(is_wspace(array[i][j]))
+			j++;
+		buffer = ft_substr(array[i], j, len_wspace(array[i]) - j);
+		if (!buffer)
+			ft_free_arr(array);
+		if (!buffer)
+			return ;
+		free(array[i]);
+		array[i] = buffer;
+		i++;
+	}
+}
 
 static void	set_color(t_color *color, int index, int value)
 {
@@ -59,6 +82,7 @@ static int	index_color(char *line, t_color *color)
 	result = ft_split(line, ',');
 	if (!result)
 		return (-1);
+	remove_wspace(result);
 	if (color_check(result))
 	{
 		ft_free_arr(result);

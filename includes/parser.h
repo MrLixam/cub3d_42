@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:02:30 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/22 05:14:29 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 10:49:38 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	**normalize_map(char **file, size_t start);
 size_t	get_max_length(char **foo, size_t start);
 int		parse_map(char **map);
 int		check_images(void);
+size_t	len_wspace(char *line);
 
 void	parser(char *path);
 #endif

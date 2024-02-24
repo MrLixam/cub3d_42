@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:06:23 by r                 #+#    #+#             */
-/*   Updated: 2024/02/24 01:31:40 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 03:58:17 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static int	player_action(t_game *game, float x, float y)
 {
 	update_position_x(game, x);
 	update_position_y(game, y);
-	raycast(game);
 	return (0);
 }
 
@@ -68,40 +67,38 @@ static int	player_rotation(t_game *game, int direction)
 {
 	if (direction == 1)
 	{
-		game->player.view += 0.1;
+		game->player.view += 0.05;
 		if (game->player.view > 2 * PI)
 			game->player.view -= 2 * PI;
 	}
 	if (direction == 2)
 	{
-		game->player.view -= 0.1;
+		game->player.view -= 0.05;
 		if (game->player.view < 0)
 			game->player.view += 2 * PI;
 	}
-	raycast(game);
 	return (0);
 }
 
-int	hook_keyboard(int keycode, void *game)
+int	actions(void *param)
 {
-	t_game	*tmp;
+	t_game *game;
 	float	view;
 
-	tmp = (t_game *)game;
-	view = tmp->player.view;
-	if (keycode == 41)
-		mlx_loop_end(tmp->mlx);
-	if (keycode == 26)
-		player_action(tmp, cos(view), sin(view));
-	if (keycode == 4)
-		player_action(tmp, cos(view - P2), sin(view - P2));
-	if (keycode == 22)
-		player_action(tmp, -cos(view), -sin(view));
-	if (keycode == 7)
-		player_action(tmp, cos(view + P2), sin(view + P2));
-	if (keycode == 80)
-		player_rotation(tmp, 2);
-	if (keycode == 79)
-		player_rotation(tmp, 1);
+	game = (t_game *)param;
+	view = game->player.view;
+	if (game->events[0])
+		player_action(game, cos(view), sin(view));
+	if (game->events[1])
+		player_action(game, cos(view - P2), sin(view - P2));
+	if (game->events[2])
+		player_action(game, -cos(view), -sin(view));
+	if (game->events[3])
+		player_action(game, cos(view + P2), sin(view + P2));
+	if (game->events[4])
+		player_rotation(game, 2);
+	if (game->events[5])
+		player_rotation(game, 1);
+	raycast(game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:52:56 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/23 19:55:35 by gpouzet          ###   ########.fr       */
+/*   Updated: 2024/02/24 03:37:36 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STRUCTS_H
 
 # include <stdlib.h>
+# include <stdbool.h>
 
 typedef struct s_color
 {
@@ -92,6 +93,7 @@ typedef struct s_game
 	t_txt	texture;
 	t_pc	player;
 	t_ray	raycast;
+	bool	events[6];
 }			t_game;
 
 #endif

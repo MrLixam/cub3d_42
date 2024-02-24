@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:02:59 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/24 01:19:02 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 02:08:44 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ static void	set_img(t_img *image, char *path, void *mlx)
 		image->width = 2;
 		if (image->img == NULL)
 			return;
-		mlx_set_image_pixel(mlx, image->img, 0, 0, 0xFF00FFFF);
-		mlx_set_image_pixel(mlx, image->img, 1, 0, 0x000000FF);
-		mlx_set_image_pixel(mlx, image->img, 0, 1, 0x000000FF);
-		mlx_set_image_pixel(mlx, image->img, 1, 1, 0x00FFFFFF);
+		mlx_set_image_pixel(mlx, image->img, 0, 0, 0xFFFF00FF);
+		mlx_set_image_pixel(mlx, image->img, 1, 0, 0xFF000000);
+		mlx_set_image_pixel(mlx, image->img, 0, 1, 0xFF000000);
+		mlx_set_image_pixel(mlx, image->img, 1, 1, 0xFFFF00FF);
 	}
 }
 
@@ -85,7 +85,7 @@ void	set_textures(t_graphic *graphics, t_game *game)
 	set_img(&texture->south, graphics->south, game->mlx);
 	set_img(&texture->west, graphics->west, game->mlx);
 	set_img(&texture->east, graphics->east, game->mlx);
-	game->texture.ceiling->hex = color_struct(game->texture.ceiling);
-	game->texture.floor->hex = color_struct(game->texture.floor);
+	game->texture.ceiling->hex = get_argb(255, game->texture.ceiling->red, game->texture.ceiling->green, game->texture.ceiling->blue);
+	game->texture.floor->hex = get_argb(255, game->texture.floor->red, game->texture.floor->green, game->texture.floor->blue);
 	check_img(game);
 }

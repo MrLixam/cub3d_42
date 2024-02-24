@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:03:16 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/24 00:40:16 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 03:56:55 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,19 @@
 #  define DEG 0.0174533
 # endif
 # ifndef RES
-#  define RES 64
+#  define RES 512
 # endif
 
 int		cub3d(t_game *game);
 /*			mlx			*/
-int 	hook_keyboard(int keycode, void *game);
 int		hook_window(int keycode, void *game);
+int		keyboard_engage(int keycode, void *param);
+int		keyboard_disengage(int keycode, void *param);
+int		actions(void *param);
 void    render_map(t_game *game, char **map);
 void	draw_line(t_game *game, int deg, t_ray ray);
 /*			raycast		*/
-int	raycast(t_game *game);
+int		raycast(t_game *game);
+int		update(void *param);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:49:08 by r                 #+#    #+#             */
-/*   Updated: 2024/02/23 21:24:44 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 04:45:35 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ float	wall_hit(t_game *game, t_line *line)
 	float	px;
 	float	py;
 
-	limite = game->map_height;
+	limite = game->map_height + 1;
 	if (game->map_width > game->map_height)
-		limite = game->map_width;
+		limite = game->map_width + 1;
 	px = game->player.x * RES + game->player.sub_x;
 	py = game->player.y * RES + game->player.sub_y;
 	dof = -1;
@@ -127,19 +127,21 @@ void	shortest_line(t_game *game)
 			game->raycast.side = 4;
 	}
 }
+
 int	raycast(t_game *game)
 {
 	int		i;
-	//float	px;
-	//float	py;
+	float	px;
+	int		x;
+	float	py;
 	float	ca;
 
-	//px = game->player.x * RES + game->player.sub_x;
-	//py = game->player.y * RES + game->player.sub_y;
+	px = game->player.x * RES + game->player.sub_x;
+	py = game->player.y * RES + game->player.sub_y;
 
 	i = -1;
 	game->raycast.ray = game->player.view - DEG * 30;
-	while (++i < 360)
+	while (++i < 1080)
 	{
 		if (game->raycast.ray < 0)
 			game->raycast.ray += 2 * PI;
@@ -166,12 +168,12 @@ int	raycast(t_game *game)
 			ca -= 2 * PI;
 		game->raycast.dist = game->raycast.dist * cos(ca);
 		draw_line(game, i, game->raycast);
-/*		x = -1;
+		x = -1;
     	while (++x < (int)game->raycast.dist)
     	{   
     	    mlx_pixel_put(game->mlx, game->win,1100+ 8 + px + (x * cos(game->raycast.ray)), 8 + py + (x * sin(game->raycast.ray)), 0xC5BCFA);
     	}
-*/		game->raycast.ray += DEG / 6;
+		game->raycast.ray += DEG / 18;
 	}
 	return (0);
 }

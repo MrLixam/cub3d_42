@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 06:03:16 by lvincent          #+#    #+#             */
-/*   Updated: 2024/02/24 03:56:55 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 04:57:21 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 #  define DEG 0.0174533
 # endif
 # ifndef RES
-#  define RES 512
+#  define RES 64
 # endif
 
 int		cub3d(t_game *game);

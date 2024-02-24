@@ -6,7 +6,7 @@
 /*   By: lvincent <lvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:06:23 by r                 #+#    #+#             */
-/*   Updated: 2024/02/24 03:58:17 by lvincent         ###   ########.fr       */
+/*   Updated: 2024/02/24 06:24:42 by lvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ static void	update_position_x(t_game *game, float x)
 	{
 		if (game->map[game->player.y][game->player.x + 1] != '1')
 		{
-			game->player.sub_x = 1;
+			game->player.sub_x = 0;
 			game->player.x++;
 		}
+		else
+			printf("Wall!");
 	}
 	else if (game->player.sub_x + 4 * x < 1)
 	{
@@ -40,7 +42,7 @@ static void	update_position_y(t_game *game, float y)
 	{
 		if (game->map[game->player.y + 1][game->player.x] != '1')
 		{
-			game->player.sub_y = 1;
+			game->player.sub_y = 0;
 			game->player.y++;
 		}
 	}
@@ -84,9 +86,11 @@ int	actions(void *param)
 {
 	t_game *game;
 	float	view;
+	bool	*events;
 
 	game = (t_game *)param;
 	view = game->player.view;
+	events = game->events;
 	if (game->events[0])
 		player_action(game, cos(view), sin(view));
 	if (game->events[1])
@@ -99,6 +103,7 @@ int	actions(void *param)
 		player_rotation(game, 2);
 	if (game->events[5])
 		player_rotation(game, 1);
-	raycast(game);
+	if (events[0] || events[1] || events[2] || events[3] || events[4] || events[5])
+		raycast(game);
 	return (0);
 }
